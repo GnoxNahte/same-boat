@@ -6,23 +6,23 @@ const currentPath = pathname.slice(1); // remove the first "/"
 ---
 
 <nav class="container pill">
-    <a same-boat/pulse" class={currentPath === "pulse" ? "active" : ""} >
+    <a href="/same-boat/pulse" class={currentPath === "pulse" ? "active" : ""} >
         <Activity />
         Pulse
     </a>
-    <a same-boat/streak" class={currentPath === "streak" ? "active" : ""} >
+    <a href="/same-boat/streak" class={currentPath === "streak" ? "active" : ""} >
         <Flame />
         Streak
     </a>
-    <a same-boat/match" class={currentPath === "match" ? "active" : ""} >
+    <a href="/same-boat/match" class={currentPath === "match" ? "active" : ""} >
         <Users />
         Match
     </a>
-    <a same-boat/mood-wall" class={currentPath === "mood-wall" ? "active" : ""} >
+    <a href="/same-boat/mood-wall" class={currentPath === "mood-wall" ? "active" : ""} >
         <LayoutGrid />
         Mood Wall
     </a>
-    <a same-boat/profile" class={currentPath === "profile" ? "active" : ""} >
+    <a href="/same-boat/profile" class={currentPath === "profile" ? "active" : ""} >
         <User />
         Profile
     </a>
