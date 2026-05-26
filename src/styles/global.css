@@ -1,0 +1,8 @@
+html {
+    background-color: red;
+}
+
+.card {
+    border: 1px solid;
+    border-color: oklch(92% .015 270);
+}

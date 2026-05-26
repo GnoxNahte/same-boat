@@ -1,0 +1,19 @@
+---
+const { name, course } = Astro.props;
+---
+
+<div class="profile card">
+    <div class="profile-header">
+        <div class="profile-avatar">🦦</div>
+        <div class="profile-info">
+            <h2>{ name }</h2>
+            <p>{ course }</p>
+        </div>
+    </div>
+</div>
+
+<style>
+.profile {
+    background: linear-gradient(135deg, #d1fae5 0%, #cffafe 100%);
+}
+</style>
