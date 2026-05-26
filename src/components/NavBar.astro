@@ -1,11 +1,66 @@
-<nav>
-    <a href="/src/pages/pulse">Home</a>
-    <a href="/src/pages/streak">Search</a>
-    <a href="/src/pages/match">Streak</a>
-    <a href="/src/pages/mood-wall">Mood Wall</a>
-    <a href="/src/pages/profile">Profile</a>
+---
+import { Activity, Flame, Users, LayoutGrid, User } from '@lucide/astro';
+
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname.slice(1); // remove the first "/"
+---
+
+<nav class="container pill">
+    <a href="/pulse" class={currentPath === "pulse" ? "active" : ""} >
+        <Activity />
+        Pulse
+    </a>
+    <a href="/streak" class={currentPath === "streak" ? "active" : ""} >
+        <Flame />
+        Streak
+    </a>
+    <a href="/match" class={currentPath === "match" ? "active" : ""} >
+        <Users />
+        Match
+    </a>
+    <a href="/mood-wall" class={currentPath === "mood-wall" ? "active" : ""} >
+        <LayoutGrid />
+        Mood Wall
+    </a>
+    <a href="/profile" class={currentPath === "profile" ? "active" : ""} >
+        <User />
+        Profile
+    </a>
 </nav>
 
 <style>
-    
+nav {
+    position: fixed;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: space-evenly;
+    width: 100%;
+    max-width: calc(var(--page-max-width) - 32px);
+    bottom: 14px;
+    padding: 14px;
+}
+
+a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: grey;
+
+    text-decoration: none;
+    font-size: 0.8rem;
+    gap: 4px;
+
+    &.active {
+        color: var(--primary);
+    }
+
+    .lucide {
+        --icon-size: 36px;
+        width: var(--icon-size);
+        height: var(--icon-size);
+        padding: 8px;
+    }
+}
+
 </style>

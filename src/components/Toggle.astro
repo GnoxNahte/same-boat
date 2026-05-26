@@ -1,5 +1,8 @@
-<label class="switch">
-  <input type="checkbox">
+---
+const { class: className, isOn, id = "" } = Astro.props;
+---
+<label class:list={["switch", className]} for={id}>
+  <input type="checkbox" id={id} name={id} checked={isOn}>
   <span class="slider round"></span>
 </label>
 

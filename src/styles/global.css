@@ -43,33 +43,70 @@
     --sidebar-accent-foreground: oklch(35% .06 290);
     --sidebar-border: oklch(92% .015 270);
     --sidebar-ring: oklch(68% .11 265);
+
+    --page-max-width: 500px;
+    --fade-box-shadow:  0 2px 2px rgba(0, 0, 0, 0.1), 
+                        0 1px 2px -1px rgba(0, 0, 0, 0.1);
 }
 
-html,
+* {
+    box-sizing: border-box;
+}
+
+html {
+    background-image: linear-gradient(in oklab, rgb(238, 242, 255) 0%, rgb(245, 243, 255) 50%, rgb(236, 254, 255) 100%);
+}
+
 body {
     margin: 0 auto;
-    max-width: 35rem;
-    height: 100%;
-    font-family: Arial, Helvetica, sans-serif;
+    max-width: var(--page-max-width);
+    font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    border-radius: 0px !important;
     color: var(--text);
-    background-color: color-mix(in oklab,var(--background) 60%,transparent);
+    background-color: oklab(0.985 -0.00173648 -0.00984808 / 0.6);
+    padding: 22px 20px;
+}
+
+h2 {
+    margin-top: 1em;
+    margin-bottom: 0.4em;
+    font-size: 1.15rem;
+    font-weight: 600;
+
+    &:first-child {
+        margin-top: 0;
+    }
+}
+
+h3 {
+    margin-top: 1em;
+    margin-bottom: 0.4em;
+    font-size: 1.05rem;
+    font-weight: 500;
+
+    &:first-child {
+        margin-top: 0;
+    }
 }
 
 label {
     display: inline-block;
     margin-bottom: 0.2em;
+    margin-left: 0.6em;
+    color: var(--muted-foreground);
+    font-size: small;
 }
 
 input {
-    display: block;
-    margin-bottom: 1.8em;
-    width:95%;
-    padding: 8px 12px;
-    border-radius: 2em;
-    font-size: 14px;
-    transition: border-color 0.2s;
-    background: var(--neutral-50);
+    display: inline-block;
     
+    width: 100%;
+    margin-bottom: 1.8em;
+    padding: 8px 14px;
+    border-radius: 100vw; /* rounded sides */
+    
+    font-size: small;
+
     border: none;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15), 
                 0 1px 2px -1px rgba(0, 0, 0, 0.15);
@@ -80,18 +117,42 @@ input {
 }
 
 body, .card, .container {
-    padding: 24px 20px;
+    padding: 22px 16px;
     border-radius: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 
-                0 1px 2px -1px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--fade-box-shadow);
 }
 
 .card, .container {
     background-color: white;
 }
 
-.subtitle {
-    text-transform: uppercase;
-    font-weight: bold;
-    color: #777;
+.pill {
+    border-radius: 100vw; /* rounded sides */
+}
+
+.lucide {
+    padding: 0.2em;
+}
+
+.circle-icon,
+.active .lucide {
+    background-color: color-mix(in oklab,var(--primary) 10%,transparent);
+    border-radius: 100vw;
+    aspect-ratio: 1;
+}
+
+.button {
+    box-shadow: var(--fade-box-shadow);
+    padding: .8em;
+
+    border-radius: 100vw;
+
+    color: var(--text);
+    background-color: var(--background);
+
+    font-size: small;
+}
+
+a.button {
+    text-decoration: none;
 }

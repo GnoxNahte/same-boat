@@ -1,38 +1,115 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import ProfileCard from '../components/ProfileCard.astro';
-import ListItem from '../components/ListItem.astro';
+import Layout from "../layouts/Layout.astro";
+import SelfProfileCard from "../components/SelfProfileCard.astro";
+import { Lock, Users, Eye, Bell, Heart } from "@lucide/astro";
+import Toggle from "../components/Toggle.astro";
+import friends from "../assets/friends.json"
+import ProfileCard from "../components/ProfileCard.astro";
+
+const profileData = [
+  { text: "Display Name", placeholder: "Leon" },
+  { text: "School Name", placeholder: "Singapore Institute of Technology" },
+  { text: "Course", placeholder: "Information Technology" },
+  { text: "Year of Study", placeholder: "Year 2" },
+  { text: "Interests", placeholder: "Coding, hiking, music" },
+  { text: "Preferred support style", placeholder: "Talk Buddy" },
+];
+
+const privacySettings = [
+  {
+    text: "General",
+    items: [
+      { icon: Lock, text: "Stay anonymous by default", isOn: true },
+      { icon: Users, text: "Allow buddy matching", isOn: true },
+      { icon: Eye, text: "Show my activity from Mood Wall", isOn: false },
+      { icon: Bell, text: "Allow notifications", isOn: true },
+    ],
+  },
+  {
+    text: "After reveal",
+    items: [
+      { icon: Heart, text: "Allow friend requests", isOn: true },
+      { icon: Eye, text: "Show course", isOn: false },
+      { icon: Eye, text: "Show year of study", isOn: true },
+    ],
+  },
+];
 
 ---
 
 <Layout>
-    <ProfileCard name="Leron" course="Information Technology • Year 2"/>
-    <h2>Profile</h2>
-    <div class="container">
-        <label class="subtitle" for="display-name">Display name</label>
-        <input type="text" id="display-name" />
-        <label class="subtitle" for="sch-name">School Name</label>
-        <input type="text" id="sch-name" />
-        <label class="subtitle" for="course-name">Course</label>
-        <input type="text" id="course-name" />
-        <label class="subtitle" for="year-of-study">Year of Study</label>
-        <input type="text" id="year-of-study" />
-        <label class="subtitle" for="interests">Interests</label>
-        <input type="text" id="interests" />
-        <label class="subtitle" for="supp-style">Preferred support style</label>
-        <input type="text" id="supp-style" />
-    </div>
+  <SelfProfileCard name="Leron" course="Information Technology • Year 2" />
+  <h2>Profile</h2>
+  <div class="container">
+    {
+      profileData.map((item) => {
+        const inputId = item.text.toLowerCase().replace(/\s+/g, "-");
 
-    <h2>Privacy Settings</h2>
-    <div class="container">
+        return (
+          <>
+            <label class="subtitle" for={inputId}>
+              {item.text}
+            </label>
+            <input
+              type="text"
+              id={inputId}
+              name={inputId}
+              placeholder={"e.g. " + item.placeholder}
+            />
+          </>
+        );
+      })
+    }
+  </div>
+
+  <h2>Privacy Settings</h2>
+  <div class="container">
+    {
+      privacySettings.map((group) => (
         <div>
-            <ListItem itemName="Stay anonymous by default" />
+          {group.text && <h3 class="group-heading">{group.text}</h3>}
+
+          <div>
+            {group.items.map(({ icon: Icon, text, isOn }) => {
+              const inputId = text.toLowerCase().replace(/\s+/g, "-");
+
+              return (
+                <div class="setting-row">
+                    <Icon />
+                    <label for={inputId}>{text}</label>
+                    <Toggle class="setting-toggle" id={inputId} isOn={isOn}/>
+                </div>
+              );
+            })}
+          </div>
         </div>
-    </div>
+      ))
+    }
+  </div>
+
+  <h2>Friends</h2>
+  <div class="friends">
+  {
+    friends.map(friend => <ProfileCard name={friend.name} course={friend.course} year={friend.year} lastMsg={friend["last-message"]}/>)
+  }
+  </div>
 </Layout>
 
 <style>
-    label {
-        margin-left: 0.5em;
-    }
+
+.setting-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.8em;
+
+  .setting-toggle {
+    margin-left: auto;
+  }
+}
+
+.friends {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8em;
+}
 </style>

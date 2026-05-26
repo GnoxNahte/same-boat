@@ -1,19 +1,59 @@
 ---
-const { name, course } = Astro.props;
+const { name, course, year, lastMsg } = Astro.props;
+const inital = name[0];
 ---
 
 <div class="profile card">
-    <div class="profile-header">
-        <div class="profile-avatar">🦦</div>
-        <div class="profile-info">
-            <h2>{ name }</h2>
-            <p>{ course }</p>
-        </div>
+    <div class="icon circle-icon">
+        <span>{inital}</span>
     </div>
+    <div class="profile-info">
+        <p class="name">{ name }</p>
+        <p class="sub-info">{ `${course} · Year ${ year }`}</p>
+        <p class="last-msg">"{  lastMsg }"</p>
+    </div>
+    <a href="/chat/" class="button">Chat</a>
 </div>
 
 <style>
 .profile {
-    background: linear-gradient(135deg, #d1fae5 0%, #cffafe 100%);
+    display: flex;
+    align-content: center;
+    gap: 1em;
+}
+
+.icon {
+    margin: auto 0;
+    width:50px;
+    height: 100%;
+
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+
+    text-align: center;
+    background-color: #d0fae5;
+}
+
+.profile-info p {
+    margin: 0;
+}
+
+.name {
+    font-weight: 600;
+}
+
+.sub-info, .last-msg {
+    color: var(--muted-foreground);
+    font-size: small;
+}
+
+.last-msg {
+    margin-top: 4px;
+    font-style: italic;
+}
+
+a.button {
+    margin: auto 0 auto auto;
 }
 </style>

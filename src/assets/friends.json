@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Daniel",
+    "course": "Business",
+    "year": 2,
+    "last-message": "Let's study again tomorrow?"
+  },
+  {
+    "name": "Sophia",
+    "course": "Computer Science",
+    "year": 1,
+    "last-message": "Did you finish the lab assignment?"
+  },
+  {
+    "name": "Liam",
+    "course": "Mechanical Engineering",
+    "year": 3,
+    "last-message": "See you at the library at 4 PM."
+  },
+  {
+    "name": "Olivia",
+    "course": "Psychology",
+    "year": 4,
+    "last-message": "Can you share the lecture notes?"
+  }
+]
