@@ -5,5 +5,7 @@ import { defineConfig } from "astro/config";
 export default defineConfig({
   prefetch: {
     prefetchAll: true,
-  },
+  },  
+  site: 'https://gnoxnahte.github.io',
+  base: 'same-boat',
 });
