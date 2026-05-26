@@ -1,3 +1,7 @@
+---
+import NavBar from "../components/NavBar.astro";
+import "../styles/global.css";
+---
 <!doctype html>
 <html lang="en">
 	<head>
@@ -9,66 +13,8 @@
 		<meta name="generator" content={Astro.generator} />
 		<title>Astro Basics</title>
 	</head>
-	<body class="container">
+	<body>
 		<slot />
+        <NavBar />
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0 auto;
-        max-width: 30rem;
-		height: 100%;
-        font-family: Arial, Helvetica, sans-serif;
-	}
-    
-    :root {
-        --primary: #6366f1;
-        --primary-light: #e0e7ff;
-        --success: #10b981;
-        --danger: #ef4444;
-        --warning: #f59e0b;
-        --neutral-50: #f9fafb;
-        --neutral-100: #f3f4f6;
-        --neutral-200: #e5e7eb;
-        --neutral-300: #d1d5db;
-        --neutral-600: #4b5563;
-        --neutral-700: #374151;
-        --neutral-900: #111827;
-        --gradient-mint: linear-gradient(135deg, #d1fae5 0%, #cffafe 100%);
-        --gradient-purple: linear-gradient(135deg, #ede9fe 0%, #fce7f3 100%);
-    }
-
-    body {
-        margin: 0 1em;
-    }
-</style>
-
-<style is:global>
-    input {
-        display: block;
-        margin-bottom: 1.8em;
-        width:95%;
-        padding: 8px 12px;
-        border: 1.5px solid var(--neutral-200);
-        border-radius: 2em;
-        font-size: 14px;
-        transition: border-color 0.2s;
-        background: var(--neutral-50);
-    }
-    .card, .container {
-        padding: 6px 20px;
-        border-radius: 20px;
-        box-shadow: #ccc 5px 5px 15px;
-        border: 1px solid;
-        border-color: oklch(92% .015 270);
-    }
-
-    
-.subtitle {
-    text-transform: uppercase;
-    font-weight: bold;
-    color: #777;
-}
-</style>

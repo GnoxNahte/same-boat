@@ -3,24 +3,25 @@ import Layout from '../layouts/Layout.astro';
 import ProfileCard from '../components/ProfileCard.astro';
 import ListItem from '../components/ListItem.astro';
 
-const name = "Leron"
 ---
 
 <Layout>
     <ProfileCard name="Leron" course="Information Technology • Year 2"/>
     <h2>Profile</h2>
-    <label class="subtitle" for="display-name">Display name</label>
-    <input type="text" id="display-name" />
-    <label class="subtitle" for="sch-name">School Name</label>
-    <input type="text" id="sch-name" />
-    <label class="subtitle" for="course-name">Course</label>
-    <input type="text" id="course-name" />
-    <label class="subtitle" for="year-of-study">Year of Study</label>
-    <input type="text" id="year-of-study" />
-    <label class="subtitle" for="interests">Interests</label>
-    <input type="text" id="interests" />
-    <label class="subtitle" for="supp-style">Preferred support style</label>
-    <input type="text" id="supp-style" />
+    <div class="container">
+        <label class="subtitle" for="display-name">Display name</label>
+        <input type="text" id="display-name" />
+        <label class="subtitle" for="sch-name">School Name</label>
+        <input type="text" id="sch-name" />
+        <label class="subtitle" for="course-name">Course</label>
+        <input type="text" id="course-name" />
+        <label class="subtitle" for="year-of-study">Year of Study</label>
+        <input type="text" id="year-of-study" />
+        <label class="subtitle" for="interests">Interests</label>
+        <input type="text" id="interests" />
+        <label class="subtitle" for="supp-style">Preferred support style</label>
+        <input type="text" id="supp-style" />
+    </div>
 
     <h2>Privacy Settings</h2>
     <div class="container">
