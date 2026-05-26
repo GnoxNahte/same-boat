@@ -7,5 +7,5 @@ export default defineConfig({
     prefetchAll: true,
   },  
   site: 'https://gnoxnahte.github.io',
-  base: 'same-boat',
+  base: '/same-boat',
 });
