@@ -7,8 +7,8 @@ const { isSignUp } = Astro.props;
 
 <CleanLayout>
     <header>
-        <Ship class="circle-icon icon"/>
-        <h2>Same Boat</h2>
+        <Ship class="circle-icon icon" transition:name="header-icon"/>
+        <h2 transition:name="header-title">Same Boat</h2>
     </header>
     <div class="container">
         <p>

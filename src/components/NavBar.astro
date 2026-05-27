@@ -35,11 +35,14 @@ nav {
     display: flex;
     box-sizing: border-box;
     justify-content: space-evenly;
+
     width: 100%;
     max-width: var(--page-content-width);
     bottom: 14px;
-    padding: 12px;      
-    
+    padding: 12px;
+    left: 50%; 
+    transform: translateX(-50%);
+
     backdrop-filter: blur(16px);
     background-color: color-mix(in oklab,var(--background) 60%,transparent);
 }

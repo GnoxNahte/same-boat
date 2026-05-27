@@ -3,11 +3,11 @@ import { Ship } from "@lucide/astro";
 ---
 
 <header>
-    <div class="content">
+    <div class="content" transition:name="header">
         <div class="circle-icon">
-            <Ship />
+            <Ship transition:name="header-icon"/>
         </div>
-        <p>Same Boat</p>
+        <p transition:name="header-title">Same Boat</p>
     </div>
 </header>
 

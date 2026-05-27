@@ -47,9 +47,9 @@
 
     --focus-gradient-bg: linear-gradient(to right bottom, oklch(0.943 0.029 294.588) 0%, oklch(0.951 0.026 236.824) 50%, oklch(0.95 0.052 163.051) 100%);
 
+    --page-padding: 16px; /* body horizontal padding */
     --page-max-width: 450px;
-    /* idk why its overflowing but a quick hack for fixed elements */
-    --page-content-width: calc(var(--page-max-width) - 32px); 
+    --page-content-width: calc(var(--page-max-width) - var(--page-padding) * 2); 
     --fade-box-shadow:  0 2px 2px rgba(0, 0, 0, 0.1), 
                         0 1px 2px -1px rgba(0, 0, 0, 0.1);
 }
@@ -70,7 +70,8 @@ body {
     border-radius: 0px !important;
     color: var(--text);
     background-color: var(--body-clr);
-    padding: 22px 20px;
+    padding: 22px var(--page-padding);
+    box-shadow: var(--fade-box-shadow);
 }
 
 h2 {
@@ -128,7 +129,7 @@ input {
     }
 }
 
-body, .card, .container {
+.card, .container {
     padding: 22px 16px;
     border-radius: 20px;
     box-shadow: var(--fade-box-shadow);
