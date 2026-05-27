@@ -8,5 +8,7 @@
       "sizes": "any"
     }
   ],
+  "theme_color": "#f2f3ff",
+  "background_color": "#f2f3ff",
   "display": "standalone"
 }

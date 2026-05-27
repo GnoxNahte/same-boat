@@ -19,7 +19,7 @@ const paths = [
         const href = path.path.toLowerCase().replace(/\s+/g, "-");
         const isActive = href === currentPath;
         return (
-            <a href={"/" + href} class={isActive ? "active" : ""} rel="prefetch">
+            <a href={"/" + href} class={isActive ? "active" : ""} rel="prefetch" data-astro-prefetch="load">
                 { isActive && <span class="active-circle" transition:name="nav-active"/> }
                 <path.icon />
                 {path.path}
