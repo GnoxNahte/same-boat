@@ -8,7 +8,7 @@ export default defineConfig({
   prefetch: {
     prefetchAll: true,
   },  
-  site: 'https://gnoxnahte.github.io',
+  site: 'https://same-boat.vercel.app',
   redirects: {
     "/" : "/sign-up",
   }

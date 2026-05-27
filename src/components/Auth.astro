@@ -1,5 +1,5 @@
 ---
-import CleanLayout from "../../layouts/CleanLayout.astro";
+import CleanLayout from "../layouts/CleanLayout.astro";
 import { Ship, GraduationCap, Mail, Lock, ShieldCheck } from "@lucide/astro";
 
 const { isSignUp } = Astro.props;
@@ -39,8 +39,8 @@ const { isSignUp } = Astro.props;
             <div class="input-container ">
                 <Lock class="icon" />
                 <input  type="password" id="password" name="password" required
-                        minlength="12"
-                        placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" />
+                        minlength="8"
+                        placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" />
             </div>
             <input type="submit" value={isSignUp ? "Sign Up" : "Sign In"} />
         </form>

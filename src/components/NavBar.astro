@@ -14,19 +14,19 @@ const paths = [
 ---
 
 <nav class="container pill">
-    {
-        paths.map(path => {
-            const href = path.path.toLowerCase().replace(/\s+/g, "-");
-            const isActive = href === currentPath;
-            return (
-                <a href={href} class={isActive ? "active" : ""}>
-                    { isActive && <span class="active-circle" transition:name="nav-active"/> }
-                    <path.icon />
-                    {path.path}
-                </a>
-            );
-        })
-    }
+{
+    paths.map(path => {
+        const href = path.path.toLowerCase().replace(/\s+/g, "-");
+        const isActive = href === currentPath;
+        return (
+            <a href={"/" + href} class={isActive ? "active" : ""} rel="prefetch">
+                { isActive && <span class="active-circle" transition:name="nav-active"/> }
+                <path.icon />
+                {path.path}
+            </a>
+        );
+    })
+}
 </nav>
 
 <style>
@@ -82,7 +82,5 @@ a {
         transform: translate(-50%, -80%);
     }
 }
-
-
 
 </style>
