@@ -1,0 +1,51 @@
+---
+import { Ship } from "@lucide/astro";
+---
+
+<header>
+    <div class="content">
+        <div class="circle-icon">
+            <Ship />
+        </div>
+        <p>Same Boat</p>
+    </div>
+</header>
+
+<style>
+header {
+    position: fixed;
+    top: 0;
+    width: inherit;
+    transform: translateX(-14px);
+    max-width: calc(var(--page-max-width) - 4px);
+    height: 100px;
+    padding: 1em;
+    
+    background: linear-gradient(
+        to bottom,
+        oklab(0.985 -0.00173648 -0.00984808 / 0.95) 0%,
+        oklab(0.985 -0.00173648 -0.00984808 / 0.98) 60%,
+        oklab(0.985 -0.00173648 -0.00984808 / 0) 100%
+    );
+    backdrop-filter: blur(16px); 
+    mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+}
+
+.content {
+    display: flex;
+    gap: 1em;
+    height: 50%;
+
+    p {
+        margin: 0;
+        align-content: center;
+    }
+}
+
+.circle-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+</style>
