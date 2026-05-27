@@ -1,14 +1,28 @@
 ---
-const { name, mood, checkInCount, need } = Astro.props;
+
+interface Props {
+  name: string;
+  icon: string;
+  mood: string;
+  need: string;
+  size: number;
+}
+const { name, icon, mood, size, need } = Astro.props;
+const lowercaseMood = mood.toLowerCase();
 ---
 
 <div class="container">
     <div class="same-line">
-        <h3>{name}</h3>
-        <span class="status-tag pill">Today</span>
+        <div>
+            <h3>{name}</h3>
+            <p class="mood">Most common mood: <span class={"status-tag pill " + lowercaseMood}>{mood}</span></p>
+        </div>
+        <span class="icon">{icon}</span>
     </div>
-    <p class="status">{status}</p>
-    <a href="./chat" class="button">Open Chat</a>
+    <p>
+        <span class="status-tag pill check-in">{size} check-ins</span>
+        <span class="status-tag pill need">Top need: {need}</span>
+    </p>
 </div>
 
 <style>
@@ -17,14 +31,50 @@ h3 {
     font-size: medium;
 }
 
-a.button {
-    display: inline-block;
-    width: 100%;
-    padding: 0.6em;
-    margin-top: 0.6em;
+.container {
+    padding-top: 14px;
+    margin-top: 1em;
 }
 
-.container {
-    margin-top: 1em;
+.icon {
+    margin-left: auto;
+    font-size: x-large;
+}
+
+.mood {
+    color: var(--muted-foreground);
+    .status-tag {
+        font-weight: 400;
+    }
+}
+
+.status-tag {
+    padding: 2px 8px;
+    font-weight: 600;
+    
+    --color: var(--primary);
+
+    &.tired { --color: var(--chart-1); }
+    &.okay { --color: var(--chart-2); }
+    &.motivated { --color: var(--chart-3); }
+    &.anxious { --color: var(--chart-4); }
+    &.stressed { --color: var(--chart-5); }
+    
+    color: color-mix(in oklab, var(--color) 60%, black);
+    background-color: color-mix(in oklab, var(--color) 40%, white)
+}
+
+.same-line {
+    margin-bottom: 8px;
+}
+
+.check-in { 
+    color: color-mix(in oklab, var(--secondary) 50%, black);
+    background-color: color-mix(in oklab, var(--secondary) 80%, white)
+}
+
+.need {
+    color: var(--primary);
+    background-color: color-mix(in oklab, var(--primary) 10%, white);
 }
 </style>

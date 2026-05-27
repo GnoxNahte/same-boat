@@ -30,7 +30,7 @@
     --border: oklch(92% .015 270);
     --input: oklch(92% .015 270);
     --ring: oklch(68% .11 265);
-    --chart-1: oklch(70% .12 265);
+    --chart-1: oklch(78.081% 0.07412 266.636);
     --chart-2: oklch(75% .1 175);
     --chart-3: oklch(78% .09 320);
     --chart-4: oklch(82% .1 85);
@@ -241,4 +241,14 @@ a.button {
         color: var(--primary-foreground);
         background-color: var(--primary);
     }
+}
+
+.status-info {
+    display: flex;
+    padding: 1em;
+    gap: 0.6em;
+
+    font-size: small;
+    color: oklch(37.8% .077 168.94);
+    background-color: oklch(97.9% .021 166.113);
 }

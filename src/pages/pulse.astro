@@ -1,13 +1,50 @@
 ---
+import { ShieldCheck } from "@lucide/astro/icons/index";
+import Zones from "../components/Zones.astro";
 import Layout from "../layouts/Layout.astro";
 
 // locations for heatmap
 const locations = [
-    { name: "Library", icon: "😴", size: 5, top: 12, left: 18 },
-    { name: "Canteen", icon: "🙂", size: 20, top: 20, left: 62 },
-    { name: "Study Area", icon: "😣", size: 5, top: 52, left: 30 },
-    { name: "Classroom Block", icon: "😟", size: 30, top: 60, left: 70 },
-    { name: "Gym", icon: "💪", size: 10, top: 78, left: 45 },
+{ name: "Library",
+    icon: "😴",
+    size: 5,
+    top: 12,
+    left: 18,
+    mood: "Tired",
+    need: "Quiet Company"
+},
+{ name: "Canteen",
+    icon: "🙂",
+    size: 20,
+    top: 20,
+    left: 62,
+    mood: "Okay",
+    need: "Just checking in"
+},
+{ name: "Study Area",
+    icon: "😣",
+    size: 5,
+    top: 52,
+    left: 30,
+    mood: "Stressed",
+    need: "Study buddy"
+},
+{ name: "Classroom Block",
+    icon: "😟",
+    size: 30,
+    top: 60,
+    left: 70,
+    mood: "Anxious",
+    need: "Encouragement"
+},
+{ name: "Gym",
+    icon: "💪",
+    size: 10,
+    top: 78,
+    left: 45,
+    mood: "Motivated",
+    need: "Talk buddy"
+},
 ]
 ---
 
@@ -24,12 +61,12 @@ const locations = [
         <div class="container">
         {
             locations.map(location => {
-                let sizeStr = "";
-                if (location.size == 0) sizeStr = "No one here";
-                else if (location.size <= 5) sizeStr = "1 - 5 people";
-                else if (location.size <= 15) sizeStr = "6 - 15 people";
-                else if (location.size <= 30) sizeStr = "16 - 30 people";
-                else  sizeStr = "> 30 people";
+                // let sizeStr = "";
+                // if (location.size == 0) sizeStr = "No one here";
+                // else if (location.size <= 5) sizeStr = "1 - 5 people";
+                // else if (location.size <= 15) sizeStr = "6 - 15 people";
+                // else if (location.size <= 30) sizeStr = "16 - 30 people";
+                // else  sizeStr = "> 30 people";
 
                 return (
                     <div class="location" style={`top: ${location.top}%; left: ${location.left}%`}>
@@ -39,19 +76,32 @@ const locations = [
                         </div>
                         <div class="info">
                             <p>{location.name}</p>
-                            <p>{sizeStr}</p>
+                            {/* <p>{sizeStr}</p> */}
                         </div>
                     </div>
                 )
             })   
         }
         </div>
-        <p>"You are not alone in this zone."</p>
+        <p><i>"You are not alone in this zone."</i></p>
+    </div>
+
+    <h2>Zones today</h2>
+    {
+        locations.map(location => 
+            <Zones name={location.name} icon={location.icon} mood={location.mood} size={location.size} need={location.need} />
+        )
+    }
+    <div class="notice status-info pill">
+        <ShieldCheck class='icon'/>
+        <span>We only show broad zones, never exact locations or identities.</span>
     </div>
 </Layout>
 
 <style>
 .heat-map {
+    margin-top: 1em;
+
     & > .container {
         z-index: 2;
         aspect-ratio: 1;
@@ -113,12 +163,25 @@ const locations = [
         height: var(--size-bg);
         width: var(--size-bg);
 
-        background-color:   oklch(0.905 0.093 164.15);
+        background-color: oklch(0.905 0.093 164.15);
+    }
+
+    &:nth-child(2) .bg {
+        background-color: oklch(91.729% 0.06498 94.978);
+    }
+    &:nth-child(3) .bg {
+        background-color: oklch(0.941 0.03 12.58);
+    }
+    &:nth-child(4) .bg {
+        background-color: oklch(0.93 0.034 272.788);
+    }
+    &:nth-child(5) .bg {
+        background-color: oklch(0.943 0.029 294.588);
     }
 }
 
-.location:nth-child(2) .bg {
-    background-image: linear-gradient(to right bottom, oklch(87.735% 0.08386 95.792) 0%, oklch(0.962 0.059 95.617) 100%);
+.notice {
+    margin-top: 1em;
 }
 
 </style>
