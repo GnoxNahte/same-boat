@@ -1,7 +1,124 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+// locations for heatmap
+const locations = [
+    { name: "Library", icon: "😴", size: 5, top: 12, left: 18 },
+    { name: "Canteen", icon: "🙂", size: 20, top: 20, left: 62 },
+    { name: "Study Area", icon: "😣", size: 5, top: 52, left: 30 },
+    { name: "Classroom Block", icon: "😟", size: 30, top: 60, left: 70 },
+    { name: "Gym", icon: "💪", size: 10, top: 78, left: 45 },
+]
 ---
 
 <Layout>
-    <h2>Pulse page</h2>
+    <h2>Match</h2>
+    <div class="main-focus container">
+        <h3>See how your school is feeling today.</h3>
+        <p>56 check-ins across campus today. You are not alone in this zone.</p>
+    </div>
+
+    <h2>Campus mood map</h2>
+    <p class="status">Soft glows show where mood is concentrated. Broad zones only. No exact locations.</p>
+    <div class="main-focus container heat-map">
+        <div class="container">
+        {
+            locations.map(location => {
+                let sizeStr = "";
+                if (location.size == 0) sizeStr = "No one here";
+                else if (location.size <= 5) sizeStr = "1 - 5 people";
+                else if (location.size <= 15) sizeStr = "6 - 15 people";
+                else if (location.size <= 30) sizeStr = "16 - 30 people";
+                else  sizeStr = "> 30 people";
+
+                return (
+                    <div class="location" style={`top: ${location.top}%; left: ${location.left}%`}>
+                        <div class="bg"></div>
+                        <div class="icon">
+                            <span>{location.icon}</span>
+                        </div>
+                        <div class="info">
+                            <p>{location.name}</p>
+                            <p>{sizeStr}</p>
+                        </div>
+                    </div>
+                )
+            })   
+        }
+        </div>
+        <p>"You are not alone in this zone."</p>
+    </div>
 </Layout>
+
+<style>
+.heat-map {
+    & > .container {
+        z-index: 2;
+        aspect-ratio: 1;
+        position: relative;
+        background-color: #ffffffaa;
+        overflow: hidden;
+    }
+
+    & > p {
+        text-align: center;
+        padding: 1em;
+        padding-bottom: 0;
+        color: var(--muted-foreground);
+    }
+}
+
+.location {
+    z-index: 3;
+    position: absolute;
+
+    .icon {
+        display: flex;
+        justify-content: center; 
+        align-items: center;
+        --icon-size: 32px;
+        width: var(--icon-size);
+        height: var(--icon-size);
+        margin: 0 auto 4px auto;
+    }
+
+    p {
+        text-align: center;
+        margin: 0;
+        font-size: x-small;
+        color: var(--muted-foreground);
+    }
+
+    div {
+        background-color: white;
+        border-radius: 100vw;
+    }
+
+    .info {
+        padding: 0.2em 1em;
+    }
+
+    .bg {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: -1;
+
+        filter: blur(24px);
+        opacity: 0.7;
+
+
+        --size-bg: 5em;
+        height: var(--size-bg);
+        width: var(--size-bg);
+
+        background-color:   oklch(0.905 0.093 164.15);
+    }
+}
+
+.location:nth-child(2) .bg {
+    background-image: linear-gradient(to right bottom, oklch(87.735% 0.08386 95.792) 0%, oklch(0.962 0.059 95.617) 100%);
+}
+
+</style>

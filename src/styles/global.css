@@ -215,3 +215,30 @@ a.button {
     font-size: smaller;
     text-align: center;
 }
+
+.main-focus {
+    display: flex;
+    flex-direction: column;
+    background-image: var(--focus-gradient-bg);
+
+    h3 {
+        font-weight: 650;
+    }
+
+    p {
+        margin-bottom: 1em;
+        font-weight: 350;
+        font-size: medium;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .button {
+        font-size: small;
+        text-align: center;
+        color: var(--primary-foreground);
+        background-color: var(--primary);
+    }
+}
