@@ -1,0 +1,12 @@
+{
+  "name": "Same Boat",
+  "short_name": "SameBoat",
+  "start_url": "./",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any"
+    }
+  ],
+  "display": "standalone"
+}
