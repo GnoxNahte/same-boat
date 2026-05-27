@@ -2,7 +2,7 @@
 import { Activity, Flame, Users, LayoutGrid, User } from '@lucide/astro';
 
 const pathname = new URL(Astro.request.url).pathname;
-const currentPath = pathname.split('/')[2] // remove the first "/"
+const currentPath = pathname.split('/')[1] // remove the first "/"
 
 const paths = [
     { icon: Activity, path: "Pulse" },
@@ -19,7 +19,7 @@ const paths = [
             const href = path.path.toLowerCase().replace(/\s+/g, "-");
             const isActive = href === currentPath;
             return (
-                <a href={"/same-boat/" + href} class={isActive ? "active" : ""}>
+                <a href={href} class={isActive ? "active" : ""}>
                     { isActive && <span class="active-circle" transition:name="nav-active"/> }
                     <path.icon />
                     {path.path}

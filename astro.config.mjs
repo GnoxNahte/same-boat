@@ -9,8 +9,7 @@ export default defineConfig({
     prefetchAll: true,
   },  
   site: 'https://gnoxnahte.github.io',
-  base: '/same-boat',
   redirects: {
-    "/" : "/same-boat/sign-up",
+    "/" : "/sign-up",
   }
 });
