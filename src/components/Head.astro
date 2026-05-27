@@ -1,5 +1,12 @@
 ---
 import { ClientRouter } from "astro:transitions";
+
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname.split('/')[2] // remove the first "/"
+const title = currentPath
+    .split('-') 
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) 
+    .join(' '); 
 ---
 
 <head>
@@ -9,6 +16,6 @@ import { ClientRouter } from "astro:transitions";
     <link rel="icon" href="/same-boat/favicon.ico" />
     <link rel="stylesheet" href="/same-boat/styles/global.css">
     <meta name="generator" content={Astro.generator} />
-    <title>Astro Basics</title>
+    <title>Same Boat - {title}</title>
     <ClientRouter />
 </head>
