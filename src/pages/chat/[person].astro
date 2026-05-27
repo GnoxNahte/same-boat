@@ -1,0 +1,35 @@
+---
+import friends from "../../assets/data/friends.json"
+import ProfileCard from "../../components/ProfileCard.astro";
+import Layout from "../../layouts/Layout.astro";
+
+export const anonymousData = {
+  name: "Anonymous",
+  course: "-",
+  year: 0,
+  "last-message": "-",
+  isAnonymous: true
+}
+
+export function getStaticPaths() {
+  const friendPaths = friends.map(friend => ({
+    params: { person: friend.name },
+    props: { personData: friend }
+  }));
+
+  return [
+    ...friendPaths,
+    {
+      params: { person: anonymousData.name },
+      props: { personData: anonymousData }
+    }
+  ];
+}
+
+const {person} = Astro.params;
+const { personData } = Astro.props;
+---
+
+<Layout>
+  <ProfileCard name={personData.name} course={personData.course} year={personData.year} />
+</Layout>

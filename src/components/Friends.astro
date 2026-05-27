@@ -6,7 +6,7 @@ import ProfileCard from "./ProfileCard.astro"
 <h2>Friends</h2>
   <div class="friends">
   {
-    friends.map(friend => <ProfileCard name={friend.name} course={friend.course} year={friend.year} lastMsg={friend["last-message"]}/>)
+    friends.map(friend => <ProfileCard name={friend.name} course={friend.course} year={friend.year} lastMsg={friend["last-message"]} isViewing="true"/>)
   }
 </div>
 

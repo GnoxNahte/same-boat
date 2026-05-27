@@ -1,18 +1,18 @@
 ---
-const { name, course, year, lastMsg } = Astro.props;
+const { name, course, year, lastMsg, isViewing } = Astro.props;
 const inital = name[0];
 ---
 
-<div class="profile card">
+<div class="profile card" transition:name={"profile-" + name}>
     <div class="icon circle-icon">
         <span>{inital}</span>
     </div>
     <div class="profile-info">
         <p class="name">{ name }</p>
         <p class="sub-info">{ `${course} · Year ${ year }`}</p>
-        <p class="last-msg">"{  lastMsg }"</p>
+        { isViewing && <p class="last-msg">"{  lastMsg }"</p> }
     </div>
-    <a href="/chat/" class="button">Chat</a>
+    { isViewing && <a href={"/chat/" + name} class="button">Chat</a> }
 </div>
 
 <style>
