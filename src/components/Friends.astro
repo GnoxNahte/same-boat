@@ -1,0 +1,19 @@
+---
+import friends from "../assets/data/friends.json"
+import ProfileCard from "./ProfileCard.astro"
+---
+
+<h2>Friends</h2>
+  <div class="friends">
+  {
+    friends.map(friend => <ProfileCard name={friend.name} course={friend.course} year={friend.year} lastMsg={friend["last-message"]}/>)
+  }
+</div>
+
+<style>
+.friends {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8em;
+}
+</style>

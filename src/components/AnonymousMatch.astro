@@ -1,0 +1,30 @@
+---
+const { name="SameBoat Buddy", status } = Astro.props;
+---
+
+<div class="container">
+    <div class="same-line">
+        <h3>{name}</h3>
+        <span class="status-tag pill">Today</span>
+    </div>
+    <p class="status">{status}</p>
+    <a href="./chat" class="button">Open Chat</a>
+</div>
+
+<style>
+h3 {
+    display: inline-block;
+    font-size: medium;
+}
+
+a.button {
+    display: inline-block;
+    width: 100%;
+    padding: 0.6em;
+    margin-top: 0.6em;
+}
+
+.container {
+    margin-top: 1em;
+}
+</style>

@@ -3,8 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import SelfProfileCard from "../components/SelfProfileCard.astro";
 import { Lock, Users, Eye, Bell, Heart } from "@lucide/astro";
 import Toggle from "../components/Toggle.astro";
-import friends from "../assets/data/friends.json"
-import ProfileCard from "../components/ProfileCard.astro";
+import Friends from "../components/Friends.astro";
 
 const profileData = [
   { text: "Display Name", placeholder: "Leon" },
@@ -87,12 +86,7 @@ const privacySettings = [
     }
   </div>
 
-  <h2>Friends</h2>
-  <div class="friends">
-  {
-    friends.map(friend => <ProfileCard name={friend.name} course={friend.course} year={friend.year} lastMsg={friend["last-message"]}/>)
-  }
-  </div>
+  <Friends />
 
   <a class="button warning sign-out-btn" href="/same-boat">Sign out</a>
 </Layout>
@@ -106,12 +100,6 @@ const privacySettings = [
   .setting-toggle {
     margin-left: auto;
   }
-}
-
-.friends {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8em;
 }
 
 .sign-out-btn {

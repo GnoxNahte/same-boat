@@ -1,7 +1,54 @@
 ---
+import AnonymousMatch from "../components/AnonymousMatch.astro";
+import Friends from "../components/Friends.astro";
+import PastAnonymousMatch from "../components/PastAnonymousMatch.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-    <h2>Match page</h2>
+    <h2>Match</h2>
+    <div class="main-focus container">
+        <h3>Connect anonymously, safely.</h3>
+        <p>Get matched with another student who is feeling something similar today.</p>
+        <a href="./match/searching" class="button">Find a buddy</a>
+    </div>
+
+    <h2>Active anonymous matches</h2>
+    <AnonymousMatch status="Stressed · Assignments · Library Zone"/>
+    
+    <Friends />
+
+    <h3>Past anonymous chats</h3>
+    <PastAnonymousMatch date="24 May" mood="Stressed" support="Talk Buddy"/>
+    <PastAnonymousMatch date="20 May" mood="Tired" support="Quiet Company"/>
+    <PastAnonymousMatch date="8 May" mood="Tired" support="Quiet Company" isAnonymous=""/>
 </Layout>
+
+<style>
+.main-focus {
+    display: flex;
+    flex-direction: column;
+    background-image: var(--focus-gradient-bg);
+
+    h3 {
+        font-weight: 650;
+    }
+
+    p {
+        margin-bottom: 1em;
+        font-weight: 350;
+        font-size: medium;
+    }
+
+    .button {
+        font-size: small;
+        text-align: center;
+        color: var(--primary-foreground);
+        background-color: var(--primary);
+    }
+}
+
+
+
+
+</style>

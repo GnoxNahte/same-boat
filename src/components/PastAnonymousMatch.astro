@@ -1,0 +1,52 @@
+---
+import { EyeOff, Users} from "@lucide/astro";
+const { date, mood, support, isAnonymous = true } = Astro.props;
+
+---
+
+<div class="container">
+    <div>
+        <h3>Past Match - {date}</h3>
+        <p class="status">Mood: <i>{mood}</i> · Support: <i>{support}</i></p>
+        <p class="status">
+            <i>Status: {isAnonymous ? "Stayed anonymous":"Friends"}</i>
+            <span class="icon">
+                {
+                    isAnonymous ?
+                    <EyeOff size={18}/> :
+                    <Users size={18} />
+                }
+            </span>
+        </p>
+    </div>
+    <!-- <a href="./chat" class="button">Open Chat</a> -->
+</div>
+
+<style>
+h3 {
+    display: inline-block;
+    font-size: medium;
+}
+
+a.button {
+    display: inline-block;
+    width: 100%;
+    padding: 0.6em;
+    margin-top: 0.6em;
+}
+
+.container {
+    padding: 12px 16px;
+    margin-top: 1em;
+}
+
+.icon {
+    display: inline-block;
+    height: 0.2em;
+    transform: translateY(4px);
+}
+
+.status {
+    align-content: center;
+}
+</style>
