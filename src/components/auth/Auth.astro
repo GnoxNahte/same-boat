@@ -1,0 +1,188 @@
+---
+import CleanLayout from "../../layouts/CleanLayout.astro";
+import { Ship, GraduationCap, Mail, Lock, ShieldCheck } from "@lucide/astro";
+
+const { isSignUp } = Astro.props;
+---
+
+<CleanLayout>
+    <header>
+        <Ship class="circle-icon icon"/>
+        <h2>Same Boat</h2>
+    </header>
+    <div class="container">
+        <p>
+            <span class="icon">
+                <GraduationCap />
+            </span>
+            Students only - school email required
+        </p>
+        <h2>{isSignUp ? "Join your campus" : "Welcome back"}</h2>
+        <p>
+            { isSignUp ? 
+            "Sign up with your school email for verification." :
+            "Sign in to check in with your campus community."
+            }
+        </p>
+        <form>
+            <label for="sch-email">School email</label>
+            <div class="input-container ">
+                <Mail class="icon" />
+                <input  type="email" id="sch-email" name="sch-email" required 
+                        pattern=".*\.edu$"
+                        title="Please enter a valid .edu email address (e.g., student@university.edu)"
+                        placeholder="you@university.edu"/>
+            </div>
+            <p class="email-warning">Must contain.edu</p>
+
+            <label for="password">Password</label>
+            <div class="input-container ">
+                <Lock class="icon" />
+                <input  type="password" id="password" name="password" required
+                        minlength="12"
+                        placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" />
+            </div>
+            <input type="submit" value={isSignUp ? "Sign Up" : "Sign In"} />
+        </form>
+
+        <p class="switch-auth">{isSignUp ? "New here?" : "Already have an account?"} <a href={"./" + (isSignUp ? "sign-in" : "sign-up")}>{isSignUp ? "Sign In" : "Sign Up"}</a></p>
+        <div class="status-info pill">
+            <ShieldCheck class='icon'/>
+            <span>Prototype only - no credentials are stored. Your check-ins stay anonymous</span>
+        </div>
+    </div>
+</CleanLayout>
+
+<script>
+    const form = document.querySelector('form');
+
+    if (form) {
+        form.addEventListener('submit', (ev) => {
+            ev.preventDefault();// Prevent refresh
+            console.log("submitted")
+            // If fail
+            if (!form.checkValidity()) {
+                form.reportValidity(); 
+                console.log("Fail");
+            } 
+            // If success
+            else {
+                console.log("success");
+                window.location.assign('/same-boat/pulse');
+            }
+        });
+    }
+</script>
+
+<style>
+header {    
+    --icon-size: 36px;
+    
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    height: var(--icon-size);
+    margin: 2em 0;
+    gap: 1em;
+
+    .icon {
+        width: var(--icon-size);
+        height: var(--icon-size);
+        padding: 10px;
+        height: 100%;
+        aspect-ratio: 1;
+    }
+
+    h2 {
+        display: inline-block;
+        margin: 0;
+        align-content: center;
+    }
+}
+
+.container {
+    max-width: 450px;
+    margin: 0 auto;
+    color: var(--muted-foreground);
+    background-color: var(--body-clr);
+    padding: 24px;
+
+    h2 {
+        color: var(--foreground)
+    }
+
+    p {
+        font-size: small;
+    }
+
+    .icon {
+        color: var(--primary);
+        display: inline-block;
+        transform: translateY(6px);
+    }
+}
+
+form {
+    label {
+        margin-top: 1em;
+        font-weight: 600;
+    }
+
+    .input-container {
+        position: relative;
+    }
+
+    .icon {
+        position: absolute;
+        left: 0.7em;
+        top: 50%;
+        transform: translateY(-50%) !important;
+    }
+
+    input {
+        margin-bottom: 0.2em;
+        background-color: color-mix(in oklab, var(--body-clr) 60%, white 40%);
+        padding: 0.8em;
+        padding-left: 3.2em;
+
+        &[type=submit] {
+            margin-top: 1em;
+            color: var(--primary-foreground);
+            background-color: var(--primary);
+            cursor: pointer;
+            outline: none !important;
+        }
+
+        &:user-invalid {
+            outline: 1.5px solid var(--destructive);
+        }
+
+        &:user-valid {
+            outline: 1.5px solid rgb(124, 207, 168);
+        }
+    }
+
+    .input-container:has(input[type=email]:user-invalid) + .email-warning {
+        color: var(--destructive);
+    }
+}
+
+.switch-auth {
+    text-align: center;
+    padding: 1.2em;
+    
+    a {
+        text-decoration: none;
+    }
+}
+
+.status-info {
+    display: flex;
+    padding: 1em;
+    gap: 0.6em;
+
+    font-size: small;
+    color: oklch(37.8% .077 168.94);
+    background-color: oklch(97.9% .021 166.113);
+}
+</style>

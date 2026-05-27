@@ -43,6 +43,7 @@
     --sidebar-accent-foreground: oklch(35% .06 290);
     --sidebar-border: oklch(92% .015 270);
     --sidebar-ring: oklch(68% .11 265);
+    --body-clr: oklab(0.985 -0.00173648 -0.00984808 / 0.6);
 
     --focus-gradient-bg: linear-gradient(to right bottom, oklch(0.943 0.029 294.588) 0%, oklch(0.951 0.026 236.824) 50%, oklch(0.95 0.052 163.051) 100%);
 
@@ -68,7 +69,7 @@ body {
     font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     border-radius: 0px !important;
     color: var(--text);
-    background-color: oklab(0.985 -0.00173648 -0.00984808 / 0.6);
+    background-color: var(--body-clr);
     padding: 22px 20px;
 }
 

@@ -5,7 +5,7 @@ const pathname = new URL(Astro.request.url).pathname;
 const currentPath = pathname.split('/')[2] // remove the first "/"
 ---
 
-<nav class="container pill">
+<nav class="container pill" transition:persist>
     <a href="/same-boat/pulse" class={currentPath === "pulse" ? "active" : ""} >
         <Activity />
         Pulse

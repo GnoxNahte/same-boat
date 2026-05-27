@@ -8,4 +8,7 @@ export default defineConfig({
   },  
   site: 'https://gnoxnahte.github.io',
   base: '/same-boat',
+  redirects: {
+    "/" : "/same-boat/sign-up",
+  }
 });
