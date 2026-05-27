@@ -104,7 +104,7 @@ p {
 label {
     display: inline-block;
     margin-bottom: 0.2em;
-    margin-left: 0.6em;
+    /* margin-left: 0.6em; */
     color: var(--muted-foreground);
     font-size: small;
 }
@@ -147,8 +147,7 @@ body, .card, .container {
     overflow: visible;
 }
 
-.circle-icon,
-.active .lucide {
+.circle-icon {
     background-color: color-mix(in oklab,var(--primary) 10%,transparent);
     border-radius: 100vw;
     aspect-ratio: 1;

@@ -3,29 +3,30 @@ import { Activity, Flame, Users, LayoutGrid, User } from '@lucide/astro';
 
 const pathname = new URL(Astro.request.url).pathname;
 const currentPath = pathname.split('/')[2] // remove the first "/"
+
+const paths = [
+    { icon: Activity, path: "Pulse" },
+    { icon: Flame, path: "Streak" },
+    { icon: Users, path: "Match" },
+    { icon: LayoutGrid, path: "Mood Wall" },
+    { icon: User, path: "Profile" }
+]
 ---
 
-<nav class="container pill" transition:persist>
-    <a href="/same-boat/pulse" class={currentPath === "pulse" ? "active" : ""} >
-        <Activity />
-        Pulse
-    </a>
-    <a href="/same-boat/streak" class={currentPath === "streak" ? "active" : ""} >
-        <Flame />
-        Streak
-    </a>
-    <a href="/same-boat/match" class={currentPath === "match" ? "active" : ""} >
-        <Users />
-        Match
-    </a>
-    <a href="/same-boat/mood-wall" class={currentPath === "mood-wall" ? "active" : ""} >
-        <LayoutGrid />
-        Mood Wall
-    </a>
-    <a href="/same-boat/profile" class={currentPath === "profile" ? "active" : ""} >
-        <User />
-        Profile
-    </a>
+<nav class="container pill">
+    {
+        paths.map(path => {
+            const href = path.path.toLowerCase().replace(/\s+/g, "-");
+            const isActive = href === currentPath;
+            return (
+                <a href={"./" + href} class={isActive ? "active" : ""}>
+                    { isActive && <span class="active-circle" transition:name="nav-active"/> }
+                    <path.icon />
+                    {path.path}
+                </a>
+            );
+        })
+    }
 </nav>
 
 <style>
@@ -44,6 +45,8 @@ nav {
 }
 
 a {
+    --icon-size: 36px;
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -59,11 +62,24 @@ a {
     }
 
     .lucide {
-        --icon-size: 36px;
         width: var(--icon-size);
         height: var(--icon-size);
         padding: 8px;
     }
+
+    .active-circle {
+        position: absolute;
+        background-color: color-mix(in oklab,var(--primary) 10%, transparent);
+        border-radius: 100vw;
+        aspect-ratio: 1;
+        top: 50%;
+        left: 50%;
+        width: var(--icon-size);
+        height: var(--icon-size);
+        transform: translate(-50%, -80%);
+    }
 }
+
+
 
 </style>
