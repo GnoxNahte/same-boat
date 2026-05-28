@@ -1,7 +1,58 @@
 ---
+import { Plus } from "@lucide/astro";
 import Layout from "../layouts/Layout.astro";
+import TagList from "../components/TagList.astro";
+import allPosts from "../assets/data/posts.json"
+import Post from "../components/Post.astro";
+
+const tags = ["All", "Assignments", "Exams", "Grades", "Group Projects", "Motivation", "Study Buddies", "Rants", "Wins"];
+const posts = allPosts;
 ---
 
 <Layout>
-    <h2>Mood Wall page</h2>
+    <div class="same-line">
+        <div>
+            <h2>Mood Wall</h2>
+            <p>Anonymous student community</p>
+        </div>
+        <a class="button post-btn">
+            <Plus />
+            <span>Post</span>
+        </a>
+    </div>
+
+    <TagList tags={tags} />
+
+    <div class="post-container">
+        {posts.map(post => 
+            <Post 
+                tag={post.tag}
+                title={post.title}
+                body={post.body}
+                upvoteCount={post.upvoteCount}
+                commentCount={post.commentCount}
+                poster={post.poster}
+            />
+        )}
+    </div>
+
+    <div class="reminder container">Community reminder: be kind, no harassment. Reports are reviewed. SameBoat is not a replacement for professional counselling.</div>
 </Layout>
+
+<style>
+.post-btn {
+    margin-left: auto;
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+    display: flex;
+    align-items: center;
+}
+
+.reminder {
+    background-color: var(--secondary);
+    color: var(--muted-foreground);
+    padding: 1em 1em;
+    font-size: small;
+
+}
+</style>

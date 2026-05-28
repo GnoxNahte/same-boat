@@ -1,0 +1,26 @@
+[
+    {
+        "tag": "Stressed",
+        "title": "Anyone else drowning in deadlines this week?",
+        "body": "I have two submissions due and I feel like I'm falling behind.",
+        "upvoteCount": 24,
+        "commentCount": 8,
+        "poster": "Quiet Fox"
+    },
+    {
+        "tag": "Tired",
+        "title": "I studied all day but still feel unprepared.",
+        "body": "I keep rereading notes but nothing is going in.",
+        "upvoteCount": 18,
+        "commentCount": 5,
+        "poster": "Sleepy Panda"
+    },
+    {
+        "tag": "Motivated",
+        "title": "Submitted my assignment today",
+        "body": "It was not perfect, but at least I completed it. Small win.",
+        "upvoteCount": 24,
+        "commentCount": 8,
+        "poster": "Bright Otter"
+    }
+]

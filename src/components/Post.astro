@@ -1,0 +1,32 @@
+---
+interface Props {
+    tag: string;
+    title: string, 
+    body: string,
+    upvoteCount: number,
+    commentCount: number,
+    poster: string;
+}
+
+const { tag, title, body, upvoteCount, commentCount, poster} = Astro.props;
+const href="/post/" + title.toLowerCase().replace(/\s+/g, "-");
+---
+
+<a class="container post" href={href}>
+    <h3>{title}</h3>
+    <p class="body">{body}</p>
+</a>
+
+<style>
+.post {
+    display: block;
+    margin-bottom: 0.8em;
+    width: 100%;
+    text-decoration: none;
+    color: black;
+}
+
+.body {
+    color: var(--muted-foreground);
+}
+</style>
