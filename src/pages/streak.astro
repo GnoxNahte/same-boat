@@ -1,7 +1,184 @@
 ---
+import { Flame } from "@lucide/astro"
 import Layout from "../layouts/Layout.astro";
+
+const weekEmotions = [
+    { day: "Mon", mood: "😣", moodStr: "anxious" },
+    { day: "Tue", mood: "😴", moodStr: "tired" },
+    { day: "Wed", mood: "🙂", moodStr: "okay" },
+    { day: "Thu", mood: "💪", moodStr: "motivated" },
+    { day: "Fri", mood: "-", moodStr: "" },
+    { day: "Sat", mood: "-", moodStr: "" },
+    { day: "Sun", mood: "-", moodStr: "" },
+]
+
+const today = "Fri";
+
+const reflections = [
+    { dateSince: "Yesterday", mood: "motivated", body: "Completed my assignment!"},
+    { dateSince: "3 days ago", mood: "tired", body: "Felt drained after group project meeting."}
+]
 ---
 
 <Layout>
-    <h2>Streak page</h2>
+    <h2>Streak</h2>
+    <div class="streak-container container">
+        <div class="same-line">
+            <div class="icon circle-icon">
+                <Flame />
+            </div>
+            <div>
+                <p class="subtitle streak">YOUR STREAK</p>
+                <p class="check-in-count">5-day check-in streak</p>
+                <p class="subtitle quote"><i>Consistency is key!</i></p>
+            </div>
+        </div>
+        <a href="/streak/check-in" class="button">Check in today</a>
+    </div>
+
+    <h3>This week</h3>
+    <div class="week-emotions">
+    {
+        weekEmotions.map(day => (
+            <div class={`day-container ${day.day == today ? "today" : ""}`}>
+                <div class={`mood circle-icon ${day.moodStr}`}>{day.mood}</div>
+                <div class="day">{day.day}</div>
+            </div>
+        ))
+    }
+    </div>
+
+    <h3>Recent reflections</h3>
+    {
+        reflections.map(reflection => (
+            <div class="container reflection">
+                <div class="same-line">
+                    <span class="date-since">{reflection.dateSince}</span>
+                    <span class={`status-tag mood pill ${reflection.mood.toLowerCase()}`}>{reflection.mood}</span>
+                </div>
+                <p>{reflection.body}</p>
+            </div>
+        ))
+    }
+
+    <div class="container note">
+        Missed a day? No worries, you can start again today.
+    </div>
 </Layout>
+
+<style>
+.streak-container {
+    background-image: var(--streak-gradient-bg);
+    
+    .same-line {
+        align-items: center;
+        gap: 1em;
+    }
+
+    .icon {
+        --size: 4em;
+        width: var(--size);
+        height: var(--size);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background-color: #fefefe;
+        
+        .lucide {
+            --icon-size: calc(var(--size) * 0.7);
+            width: var(--icon-size);
+            height: var(--icon-size);
+
+            color: oklch(0.7 0.2 28);
+        }
+    }
+
+    .subtitle {
+        color: var(--muted-foreground);
+    }
+
+    .streak {
+        font-size: 0.9em;
+    }
+
+    .quote {
+        font-size: 0.8em;
+    }
+
+    .check-in-count {
+        font-weight: 600;
+        font-size: x-large;
+    }
+
+    a.button {
+        display: inline-block;
+        width: 100%;
+        margin-top: 1em;
+
+        background-color: var(--primary);
+        color: var(--primary-foreground);
+    }
+}
+
+.week-emotions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .day-container * {
+        text-align: center;
+    }
+
+    .mood {
+        --size: 2.4rem;
+        width: var(--size);
+        height: var(--size);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .day {
+        margin-top: 0.4em;
+        color: var(--muted-foreground);
+        font-size: smaller;
+    }
+
+    .today {
+        .mood {
+            border: 1px solid var(--accent-foreground);
+        }
+
+        .day {
+            font-weight: 700;
+            /* text-decoration: underline; */
+        }
+    }
+}
+
+.reflection {
+    margin-bottom: 0.8em;
+
+    .date-since {
+        color: var(--muted-foreground);
+        font-size: small;
+    }
+
+    .mood {
+        display: inline-block;
+        margin-left: auto;
+    }
+}
+
+.note {
+    font-size: small;
+    border-radius: 100vw;
+    padding: 1em 1.4em;
+    background-color: var(--secondary);
+    color: var(--secondary-foreground);
+}
+
+</style>
