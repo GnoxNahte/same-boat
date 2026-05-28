@@ -1,14 +1,20 @@
 ---
 interface Props {
     tags: string[];
+    activeIndex: number;
 }
 
-const { tags } = Astro.props;
+const { tags, activeIndex = 0 } = Astro.props;
 ---
 
 <div class="tag-list">
 {
-    tags.map(tag => <a class="tag">{tag}</a>)
+    tags.map((tag, i) => {
+        let isActive = false;
+        if (activeIndex === i)
+            isActive = true;
+        return <a class={"tag " + (isActive ? "active" : "")}>{tag}</a>;
+    })
 }
 </div>
 
@@ -28,5 +34,13 @@ const { tags } = Astro.props;
     padding: 0.4em 0.8em;
     font-size: small;
     text-wrap-mode: nowrap;
+}
+
+.active {
+    --color: var(--primary);
+
+    border: 1px solid var(--color);
+    color: var(--color);
+    background-color: color-mix(in oklch, var(--color) 15%, transparent);
 }
 </style>

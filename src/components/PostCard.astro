@@ -1,5 +1,5 @@
 ---
-import { ArrowBigUp, MessageCircle } from "@lucide/astro"
+import { ArrowBigUp, MessageCircle, Bookmark, Flag } from "@lucide/astro"
 
 interface Props {
     tag: string;
@@ -7,11 +7,11 @@ interface Props {
     body: string,
     upvoteCount: number,
     commentCount: number,
-    poster: string;
+    author: string;
     disableLink?: boolean;
 }
 
-const { tag, title, body, upvoteCount, commentCount, poster, disableLink = false} = Astro.props;
+const { tag, title, body, upvoteCount, commentCount, author, disableLink = false} = Astro.props;
 const id = title.toLowerCase().replace(/\s+/g, "-");
 const href="/post/" + encodeURIComponent(title);
 
@@ -19,16 +19,21 @@ const href="/post/" + encodeURIComponent(title);
 
 <a class={"container post " + (disableLink ? "disable-link" : "")} href={href} transition:name={"post-" + id}>
     <div class="same-line">
-        <span class="status-tag pill">{tag}</span>
-        <span class="poster">u/{poster}</span>
+        <span class={"status-tag pill mood " + tag.toLowerCase()}>{tag}</span>
+        <span class="author">u/{author}</span>
     </div>
-    <h3>{title}{disableLink}</h3>
+    <h3>{title}</h3>
     <p class="post-body">{body}</p>
     <div class="post-metadata">
         <ArrowBigUp /> 
         <span>{upvoteCount}</span>
         <MessageCircle /> 
         <span>{commentCount}</span>
+
+        <div class="side-icons">
+            <Bookmark />
+            <Flag />
+        </div>
     </div>
 
 </a>
@@ -42,15 +47,23 @@ const href="/post/" + encodeURIComponent(title);
     color: black;
 }
 
+h3 {
+    font-size: 1em;
+}
+
 .post-body {
     color: var(--muted-foreground);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.9em;
 }
 
 .status-tag {
     margin-left: 0;
 }
 
-.poster {
+.author {
     color: var(--muted-foreground);
     margin-left: auto;
     font-size: small;
@@ -65,10 +78,17 @@ const href="/post/" + encodeURIComponent(title);
     display: flex;
     align-items: center;
     margin-top: 0.4em;
+    color: var(--muted-foreground);
     
     span {
         margin-right: 1em;
     }
+}
+
+.side-icons {
+    display: flex;
+    gap: 0.8em;
+    margin-left: auto;
 }
 
 </style>

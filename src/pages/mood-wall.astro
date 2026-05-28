@@ -30,8 +30,8 @@ const posts = allPosts;
                 title={post.title}
                 body={post.body}
                 upvoteCount={post.upvoteCount}
-                commentCount={post.commentCount}
-                poster={post.poster}
+                commentCount={post.comments.length}
+                author={post.author}
             />
         )}
     </div>
@@ -46,6 +46,7 @@ const posts = allPosts;
     color: var(--primary-foreground);
     display: flex;
     align-items: center;
+    height: fit-content;
 }
 
 .reminder {

@@ -34,7 +34,7 @@
     --chart-2: oklch(75% .1 175);
     --chart-3: oklch(78% .09 320);
     --chart-4: oklch(82% .1 85);
-    --chart-5: oklch(72% .11 25);
+    --chart-5: oklch(82% .11 25);
     --sidebar: oklch(98% .01 260);
     --sidebar-foreground: oklch(28% .04 270);
     --sidebar-primary: oklch(68% .11 265);
@@ -132,7 +132,7 @@ input {
 }
 
 .card, .container {
-    padding: 22px 16px;
+    padding: 20px 16px 22px 16px;
     border-radius: 20px;
     box-shadow: var(--fade-box-shadow);
 }
@@ -211,11 +211,27 @@ a.button {
 .status-tag {
     align-content: center;
     display: inline-block;
-    padding: 0px 16px;
+    padding: 0px 12px;
     margin-left: auto;
     background-color: var(--secondary);
     font-size: smaller;
     text-align: center;
+
+    &.mood {
+        padding: 2px 8px;
+        font-weight: 600;
+
+        --color: var(--primary);
+
+        &.tired { --color: var(--chart-1); }
+        &.okay { --color: var(--chart-2); }
+        &.motivated { --color: var(--chart-3); }
+        &.anxious { --color: var(--chart-4); }
+        &.stressed { --color: var(--chart-5); }
+        
+        color: color-mix(in oklab, var(--color) 90%, black);
+        background-color: color-mix(in oklab, var(--color) 20%, white);
+    }
 }
 
 .main-focus {

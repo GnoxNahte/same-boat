@@ -2,6 +2,8 @@
 import Layout from "../../layouts/Layout.astro";
 import posts from "../../assets/data/posts.json";
 import PostCard from "../../components/PostCard.astro"
+import Comment from "../../components/Comment.astro";
+import { Send } from "@lucide/astro";
 
 export function getStaticPaths() {
     return posts.map(post => ({
@@ -20,8 +22,54 @@ const { postData } = Astro.props;
         title={postData.title}
         body={postData.body}
         upvoteCount={postData.upvoteCount}
-        commentCount={postData.commentCount}
-        poster={postData.poster}
+        commentCount={postData.comments.length}
+        author={postData.author}
         disableLink={true}
     />
+    <h3>Comments</h3>
+    <div>
+    {
+        postData.comments.map(comment => 
+            <Comment 
+                author={comment.author}
+                comment={comment.comment}
+            />
+        )
+    }
+    </div>
+
+    <div class="comment-input-box pill same-line">
+        <input type="text" placeholder="Join the conversation..."/>
+        <button class="button">
+            <Send />
+        </button>
+    </div>
 </Layout>
+
+<style>
+.comment-input-box {
+    --size: 3.2em;
+
+    gap: 1em;
+    margin-top: 1.2em;
+
+    input {
+        display: inline-block;
+        height: var(--size);
+        margin: 0;
+    }
+
+    .button {
+        display: flex;
+        height: var(--size);
+        width: var(--size);
+        
+        justify-content: center;
+        align-items: center;
+
+        color: var(--primary-foreground);
+        background-color: var(--primary);
+        border: none;
+    }
+}
+</style>

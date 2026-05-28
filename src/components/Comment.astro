@@ -1,0 +1,61 @@
+---
+interface Props {
+    author: string,
+    comment: string,
+};
+
+const {author, comment} = Astro.props;
+const colorBrightness = Math.random() * 360;
+---
+
+<div class="comment">
+    <div class="same-line">
+        <span class="circle-icon icon" style={`background-color: oklch(0.85 0.09 ${colorBrightness}) `}>{author[0]}</span>
+        <p class="author">u/{author}</p>
+    </div>
+    <p class="comment-body">{comment}</p>
+</div>
+
+<style>
+.comment {
+    --icon-size: 2rem;
+    position: relative;
+    margin-top: 0.8em;
+}
+
+.same-line {
+    align-items: center;
+    gap: 0.4em;
+
+    .icon {
+        width: var(--icon-size);
+        height: var(--icon-size);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: small;
+    }
+}
+
+.comment-body {
+    margin-left: 2.8em;
+    font-size: 0.9em;
+}
+
+
+/* Connecting line */
+.comment:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: calc(var(--icon-size) + 0.5em);
+    bottom: -0.25em;
+    width: 2px;
+    left: calc(var(--icon-size) / 2);
+    background-color: color-mix(in oklab,var(--primary) 40%,transparent);;
+}
+
+.author {
+    font-size: small;
+    color: var(--muted-foreground);
+}
+</style>

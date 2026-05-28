@@ -4,23 +4,98 @@
         "title": "Anyone else drowning in deadlines this week?",
         "body": "I have two submissions due and I feel like I'm falling behind.",
         "upvoteCount": 24,
-        "commentCount": 8,
-        "poster": "Quiet Fox"
+        "author": "Quiet Fox",
+        "comments": [
+            {
+                "author": "Bright Otter",
+                "comment": "Yes, completely. I had three things due this week and barely slept Sunday night. You're not alone in this."
+            },
+            {
+                "author": "Swift Heron",
+                "comment": "Try breaking it into tiny chunks! Just open the doc and write one sentence. Sometimes that's all it takes to get unstuck."
+            },
+            {
+                "author": "Calm Mole",
+                "comment": "Which submissions are due first? Maybe we can figure out a priority order together."
+            },
+            {
+                "author": "Wandering Bear",
+                "comment": "Same boat here. I keep switching between tasks and getting nothing done. Pomodoro helped a bit yesterday."
+            },
+            {
+                "author": "Lone Fox",
+                "comment": "Hang in there. Deadlines always feel worse the night before. You'll get through it!"
+            }
+        ]
     },
     {
         "tag": "Tired",
         "title": "I studied all day but still feel unprepared.",
         "body": "I keep rereading notes but nothing is going in.",
         "upvoteCount": 18,
-        "commentCount": 5,
-        "poster": "Sleepy Panda"
+        "author": "Sleepy Panda",
+        "comments": [
+            {
+                "author": "Bright Otter",
+                "comment": "Rereading is honestly one of the least effective study methods. Our brains just pattern-matches without actually learning. Try testing yourself instead?"
+            },
+            {
+                "author": "Quiet Fox",
+                "comment": "When this happens to me I stop and take a 20 min nap. Sounds counterproductive but it actually helps the information stick."
+            },
+            {
+                "author": "Swift Heron",
+                "comment": "Teach it out loud to an imaginary person. I know it sounds weird but it forces you to actually recall instead of just recognize."
+            },
+            {
+                "author": "Dusty Moose",
+                "comment": "That 'nothing going in' feeling is often just mental fatigue. How long have you been at it? You might just need a real break."
+            },
+            {
+                "author": "Calm Mole",
+                "comment": "This happens to me every exam season. Honestly sometimes done is better than perfect. Rest up and trust what you know."
+            }
+        ]
     },
     {
         "tag": "Motivated",
         "title": "Submitted my assignment today",
         "body": "It was not perfect, but at least I completed it. Small win.",
         "upvoteCount": 24,
-        "commentCount": 8,
-        "poster": "Bright Otter"
+        "author": "Bright Otter",
+        "comments": [
+            {
+                "author": "Sleepy Panda",
+                "comment": "Done is better than perfect. Seriously, congrats submitting something takes courage when you're not fully happy with it."
+            },
+            {
+                "author": "Quiet Fox",
+                "comment": "Not perfect is still submitted. That's more than a lot of people manage. Celebrate it."
+            },
+            {
+                "author": "Wandering Bear",
+                "comment": "This is genuinely motivating to read. I've been putting mine off all week. Maybe I'll just get it done too."
+            },
+            {
+                "author": "Swift Heron",
+                "comment": "Small wins compound. Nice work."
+            },
+            {
+                "author": "Lone Fox",
+                "comment": "How are you feeling now that it's in? Always curious if the relief hits right away or takes a bit."
+            },
+            {
+                "author": "Dusty Moose",
+                "comment": "What was the assignment on? Just curious, might help me think about mine."
+            },
+            {
+                "author": "Calm Mole",
+                "comment": "Honestly needed to see this post today. Going to stop overthinking and just submit mine too."
+            },
+            {
+                "author": "Red Deer",
+                "comment": "The hardest part is pressing submit when you don't feel ready. You did it, that matters."
+            }
+        ]
     }
 ]

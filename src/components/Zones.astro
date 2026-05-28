@@ -15,7 +15,7 @@ const lowercaseMood = mood.toLowerCase();
     <div class="same-line">
         <div>
             <h3>{name}</h3>
-            <p class="mood">Most common mood: <span class={"status-tag pill " + lowercaseMood}>{mood}</span></p>
+            <p class="mood-body">Most common mood: <span class={"status-tag pill mood " + lowercaseMood}>{mood}</span></p>
         </div>
         <span class="icon">{icon}</span>
     </div>
@@ -41,27 +41,8 @@ h3 {
     font-size: x-large;
 }
 
-.mood {
+.mood-body {
     color: var(--muted-foreground);
-    .status-tag {
-        font-weight: 400;
-    }
-}
-
-.status-tag {
-    padding: 2px 8px;
-    font-weight: 600;
-    
-    --color: var(--primary);
-
-    &.tired { --color: var(--chart-1); }
-    &.okay { --color: var(--chart-2); }
-    &.motivated { --color: var(--chart-3); }
-    &.anxious { --color: var(--chart-4); }
-    &.stressed { --color: var(--chart-5); }
-    
-    color: color-mix(in oklab, var(--color) 60%, black);
-    background-color: color-mix(in oklab, var(--color) 40%, white)
 }
 
 .same-line {
