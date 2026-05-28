@@ -6,13 +6,15 @@ interface Props {
     upvoteCount: number,
     commentCount: number,
     poster: string;
+    isLink?: boolean;
 }
 
-const { tag, title, body, upvoteCount, commentCount, poster} = Astro.props;
-const href="/post/" + title.toLowerCase().replace(/\s+/g, "-");
+const { tag, title, body, upvoteCount, commentCount, poster, isLink = false} = Astro.props;
+const id = title.toLowerCase().replace(/\s+/g, "-");
+const href="/post/" + encodeURIComponent(title);
 ---
 
-<a class="container post" href={href}>
+<a class="container post" href={isLink ? href : ""} transition:name={"post-" + id}>
     <h3>{title}</h3>
     <p class="body">{body}</p>
 </a>

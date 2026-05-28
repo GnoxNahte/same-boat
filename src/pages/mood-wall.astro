@@ -3,7 +3,7 @@ import { Plus } from "@lucide/astro";
 import Layout from "../layouts/Layout.astro";
 import TagList from "../components/TagList.astro";
 import allPosts from "../assets/data/posts.json"
-import Post from "../components/Post.astro";
+import PostCard from "../components/PostCard.astro";
 
 const tags = ["All", "Assignments", "Exams", "Grades", "Group Projects", "Motivation", "Study Buddies", "Rants", "Wins"];
 const posts = allPosts;
@@ -25,7 +25,7 @@ const posts = allPosts;
 
     <div class="post-container">
         {posts.map(post => 
-            <Post 
+            <PostCard 
                 tag={post.tag}
                 title={post.title}
                 body={post.body}

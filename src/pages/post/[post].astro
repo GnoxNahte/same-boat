@@ -1,7 +1,26 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import posts from "../../assets/data/posts.json";
+import PostCard from "../../components/PostCard.astro"
+
+export function getStaticPaths() {
+    return posts.map(post => ({
+        params: { post: post.title },
+        props: { postData: post }
+    }));
+}
+
+const { postData } = Astro.props;
 ---
 
 <Layout>
-    <h2>Searching page</h2>
+    <h2>Post</h2>
+    <PostCard 
+        tag={postData.tag}
+        title={postData.title}
+        body={postData.body}
+        upvoteCount={postData.upvoteCount}
+        commentCount={postData.commentCount}
+        poster={postData.poster}
+    />
 </Layout>
