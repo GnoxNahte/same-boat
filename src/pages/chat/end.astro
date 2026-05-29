@@ -1,0 +1,80 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout>
+    <h2>End chat</h2>
+    <p class="subtitle">A gentle wrap-up for the day.</p>
+
+    <h3>What would you like to do with this match?</h3>
+    <form>
+        <input type="radio" id="stay" name="choice" value="stay" required>
+        <label for="stay" class="container">Stay anonymous & end chat</label>
+        
+        <input type="radio" id="reveal" name="choice" value="reveal" required>
+        <label for="reveal" class="container">Reveal identity</label>
+
+        <button type="submit" class="button container">Confirm</button>
+    </form>
+</Layout>
+
+<script>
+    const form = document.querySelector('form');
+
+    if (form) {
+        form.addEventListener('submit', (ev) => {
+            ev.preventDefault();// Prevent refresh
+            console.log("submitted")
+            // If fail
+            if (!form.checkValidity()) {
+                form.reportValidity(); 
+                console.log("Fail");
+            } 
+            // If success
+            else {
+                console.log("success");
+                window.location.assign('/chat/Liam');
+            }
+        });
+    }
+</script>
+
+<style>
+h2 {
+    margin: 0.2em;
+}
+.subtitle {
+    color: var(--muted-foreground);
+    font-size: small;
+}
+
+input {
+    display: none;
+}
+
+label {
+    width: 100%;
+
+    /* padding: 0.8em 1em; */
+    margin-bottom: 1em;
+
+    --transition-duration: 0.22s;
+    transition: color var(--transition-duration) ease-out, 
+                background-color var(--transition-duration) ease-out;
+}
+
+input:checked + label {
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+}
+
+.button {
+    width: 100%;
+}
+
+form:has(:invalid) button {
+    opacity: 0.5;
+    pointer-events: none; 
+    cursor: not-allowed !important;
+}
+</style>

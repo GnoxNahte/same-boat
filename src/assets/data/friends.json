@@ -3,24 +3,28 @@
     "name": "Daniel",
     "course": "Business",
     "year": 2,
-    "last-message": "Let's study again tomorrow?"
+    "last-message": "Let's study again tomorrow?",
+    "isAnonymous": false
   },
   {
     "name": "Sophia",
     "course": "Computer Science",
     "year": 1,
-    "last-message": "Did you finish the lab assignment?"
+    "last-message": "Did you finish the lab assignment?",
+    "isAnonymous": false
   },
   {
     "name": "Liam",
     "course": "Mechanical Engineering",
     "year": 3,
-    "last-message": "See you at the library at 4 PM."
+    "last-message": "See you at the library at 4 PM.",
+    "isAnonymous": false
   },
   {
     "name": "Olivia",
     "course": "Psychology",
     "year": 4,
-    "last-message": "Can you share the lecture notes?"
+    "last-message": "Can you share the lecture notes?",
+    "isAnonymous": false
   }
 ]

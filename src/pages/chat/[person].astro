@@ -49,9 +49,14 @@ const messages = [
         </a>
 
         <div class="person-info">
-            <h3 class="person-name">{personData.name}</h3>
+            <h3 class="person-name" transition:name={`profile-${personData.name}`}>{personData.name}</h3>
             <p class="person-course">{personData.course}</p>
         </div>
+
+        {
+            personData.isAnonymous && 
+            <a href="/chat/end" class="button end-chat">End chat</a>
+        }
     </div>
 
     <div class="container kind-warning same-line">
@@ -76,13 +81,15 @@ const messages = [
 <style>
 
 .chat-header {
+    --content-offset: -0.4em;
+    --size-offset: 3px;
+
     align-items: center;
     height: 3.6em;
     box-shadow: 0px 4px 4px -4px rgba(0,0,0,0.4);
-    transform: translateX(calc(var(--page-padding) * -1 - 4px));
-    width: calc(var(--page-max-width) + 4px);
+    transform: translateX(calc(var(--page-padding) * -1 - var(--size-offset)));
+    width: calc(var(--page-max-width) + var(--size-offset));
 
-    --offset: -0.4em;
 }
 
 .back-btn {
@@ -90,14 +97,20 @@ const messages = [
     display: flex;
     position: absolute;
     left: 1em;
-    transform: translateY(var(--offset));
+    transform: translateY(var(--content-offset));
     text-decoration: none;
+}
+
+.end-chat {
+    position: absolute;
+    right: 1em;
+    transform: translateY(var(--content-offset));
 }
 
 .person-info {
     position: absolute;
     left: 50%;
-    transform: translate(-50%, var(--offset));
+    transform: translate(-50%, var(--content-offset));
     text-align: center;
 
     .person-course {
@@ -110,8 +123,8 @@ const messages = [
     margin-top: 1em;
     color: var(--warning-foreground);
     background-color: var(--warning);
-    padding: 1em;
-    font-size: smaller;
+    padding: 0.8em 1em;
+    font-size: 0.77em;
     align-items: center;
     gap: 0.4em;
 }

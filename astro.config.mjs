@@ -11,5 +11,6 @@ export default defineConfig({
   site: 'https://same-boat.vercel.app',
   redirects: {
     "/" : "/sign-up",
+    "/chat/Anonymous" : "/chat/Same Boat Buddy"
   }
 });
