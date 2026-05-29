@@ -1,5 +1,7 @@
 ---
+import { Send } from "@lucide/astro";
 import friends from "../../assets/data/friends.json"
+import Message from "../../components/Message.astro";
 import ProfileCard from "../../components/ProfileCard.astro";
 import Layout from "../../layouts/Layout.astro";
 
@@ -26,11 +28,66 @@ export function getStaticPaths() {
   ];
 }
 
-const {person} = Astro.params;
+const { person } = Astro.params;
 const { personData } = Astro.props;
+
+const messages = [
+    { message: "Hey 👋 same boat here. Assignments are kicking me too.", clientSent: true },
+    { message: "Hang in there. Deadlines always feel worse the night before.", clientSent: false },
+    { message: "Yeah, totally feel that. Want to study quietly for 25 mins?", clientSent: true },
+]
 ---
 
 <Layout>
-  <h2>Chat</h2>
-  <ProfileCard name={personData.name} course={personData.course} year={personData.year} />
+    <h2>Chat</h2>
+    <ProfileCard name={personData.name} course={personData.course} year={personData.year} />
+
+    <div class="message-container">
+    {
+        messages.map(message => <Message message={message.message} clientSent={message.clientSent}/>)
+    }
+    </div>
+
+    <div class="comment-input-box pill same-line">
+        <input type="text" placeholder="Join the conversation..."/>
+        <button class="button">
+            <Send />
+        </button>
+    </div>
 </Layout>
+
+<style>
+.message-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
+    margin-top: 1em;
+}
+
+.comment-input-box {
+    --size: 3.2em;
+
+    gap: 1em;
+    margin-top: auto;
+
+    input {
+        display: inline-block;
+        height: var(--size);
+        margin: 0;
+    }
+
+    .button {
+        display: flex;
+        height: var(--size);
+        width: var(--size);
+        
+        justify-content: center;
+        align-items: center;
+
+        color: var(--primary-foreground);
+        background-color: var(--primary);
+        border: none;
+    }
+}
+
+</style>

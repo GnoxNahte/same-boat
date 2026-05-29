@@ -1,0 +1,27 @@
+---
+const { message, clientSent } = Astro.props;
+
+---
+
+<div class={"message pill container " + (clientSent ? "client-sent" : "buddy-sent")}>
+    {message}
+</div>
+
+<style>
+.message {
+    max-width: 80%;
+    padding: 0.5em 1.2em;
+    font-size: 0.9em;
+}
+
+.client-sent {
+    color: var(--primary-foreground);
+    background-color: var(--primary);
+}
+
+.buddy-sent {
+    margin-left: auto;
+    color: var(--foreground);
+    background-color: var(--background);
+}
+</style>
