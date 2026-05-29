@@ -38,6 +38,7 @@
     --chart-3: oklch(var(--chart-lightness) .09 320);
     --chart-4: oklch(var(--chart-lightness) .1 85);
     --chart-5: oklch(var(--chart-lightness) .11 25);
+    --chart-6: oklch(var(--chart-lightness) 0.246 37.85);
     --sidebar: oklch(98% .01 260);
     --sidebar-foreground: oklch(28% .04 270);
     --sidebar-primary: oklch(68% .11 265);
@@ -88,7 +89,6 @@ h2 {
     margin-bottom: 0.4em;
     font-size: 1.15rem;
     font-weight: 600;
-
 }
 
 h2:first-child,
@@ -240,6 +240,7 @@ a.button {
     &.motivated { --color: var(--chart-3); }
     &.anxious { --color: var(--chart-4); }
     &.stressed { --color: var(--chart-5); }
+    &.overwhelmed { --color: var(--chart-6); }
 
     color: color-mix(in oklab, var(--color) 90%, black);
     background-color: color-mix(in oklab, var(--color) 20%, white);

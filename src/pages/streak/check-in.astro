@@ -1,7 +1,227 @@
 ---
+import { ArrowLeft } from "@lucide/astro/icons/index";
 import Layout from "../../layouts/Layout.astro";
+
+const emotions = [
+{ icon: "😴", mood: "Tired" },
+{ icon: "🙂", mood: "Okay" },
+{ icon: "😣", mood: "Stressed" },
+{ icon: "😟", mood: "Anxious" },
+{ icon: "💪", mood: "Motivated" },
+{ icon: "🥵", mood: "Overwhelmed" },
+];
+
+const causes = [
+    "Assignments",
+    "Exams",
+    "Grades",
+    "Group projects",
+    "Family expectations",
+    "Future / career worries",
+    "Personal reasons", 
+    "Not sure"
+];
+
+const supportTypes = [
+    "Talk Buddy",
+    "Study Buddy",
+    "Encouragement",
+    "Quiet Company",
+    "Just Checking In"
+];
 ---
 
 <Layout>
-    <h2>Check-in</h2>
+    <a href="/streak" class="back-btn">
+        <ArrowLeft />
+        <span>Chats</span>
+    </a>
+
+    <form>
+        <h3>How are you feeling today?</h3>
+        <p class="subtitle">A small check-in can make a big difference</p>
+
+        <div class="emotions-container">
+            {
+                emotions.map(emotion => {
+                    const id = emotion.mood.toLowerCase();
+                    return (
+                    <>
+                        <input type="radio" id={id} name="emotion" value={id} required />
+                        <label for={id} class={`container emotion-choice mood ${id}`}>
+                            {emotion.icon} {emotion.mood}
+                        </label>
+                    </>
+                    );
+                })
+            }
+        </div>
+
+        <h3>What is mainly causing this feeling?</h3>
+        <div class="cause-container">
+        {
+            causes.map(cause => {
+                const id = cause.toLowerCase();
+                return (
+                <>
+                    <input type="radio" id={id} name="cause" value={id} required />
+                    <label for={id} class={`container pill-choice ${id}`}>{cause}</label>
+                </>
+                );
+            })
+        }
+        </div>
+
+        <h3>What kind of support would help today?</h3>
+        <div class="support-type-container">
+        {
+            supportTypes.map(type => {
+                const id = type.toLowerCase();
+                return (
+                <>
+                    <input type="radio" id={id} name="support-type" value={id} required />
+                    <label for={id} class={`container pill-choice ${id}`}>{type}</label>
+                </>
+                );
+            })
+        }
+        </div>
+
+        <h3>Want to add a short note?</h3>
+        <p class="subtitle">Optional and anonymous</p>
+        <textarea class="short-note container" placeholder="E.g. Two deadlines this week and I feel overwhelmed."/>
+        
+        <button type="submit" class="button container">Confirm</button>
+    </form>
 </Layout>
+
+<script>
+    const form = document.querySelector('form');
+
+    if (form) {
+        form.addEventListener('submit', (ev) => {
+            ev.preventDefault();// Prevent refresh
+            console.log("submitted")
+            // If fail
+            if (!form.checkValidity()) {
+                form.reportValidity(); 
+                console.log("Fail");
+            } 
+            // If success
+            else {
+                console.log("success");
+                window.location.assign('/streak');
+            }
+        });
+    }
+</script>
+
+<style>
+
+.back-btn {
+    color: var(--muted-foreground);
+    display: flex;
+    text-decoration: none;
+    margin-bottom: 0.8em;
+}
+
+h3:not(:first-child) {
+    margin-top: 1.6em;
+}
+
+.subtitle {
+    color: var(--muted-foreground);
+    font-size: small;
+    margin-bottom: 0.8em;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+label {
+    width: 100%;
+
+    /* padding: 0.8em 1em; */
+    margin-bottom: 1em;
+
+    transition-property: color, background-color, border, width, height;
+    transition-duration: 0.22s;
+    transition-timing-function: ease-out;
+}
+
+.emotions-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 0.6em;
+    
+    input:not(:checked) + label {
+        color: var(--foreground);
+        background-color: var(--background);
+    }
+
+    input:checked + label {
+        font-weight: 600;
+        outline: 1px solid var(--color);
+    }
+    
+    .emotion-choice {
+        margin: 0;
+        font-size: 0.9em;
+        border-radius: 14px;
+    }
+}
+
+.cause-container, .support-type-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6em;
+    
+    label {
+        padding: 0.6em 1em;
+        margin: 0;
+        width: fit-content;
+        font-size: 0.9em;
+    }
+
+    input:checked + label {
+        --color: var(--primary);
+
+        outline: 1px solid var(--color);
+        color: var(--color);
+        background-color: color-mix(in oklch, var(--color) 15%, transparent);
+
+        transition-property: color, background-color;
+        transition-duration: 0.22s;
+        transition-timing-function: ease-out;
+    }
+}
+
+textarea.short-note {
+    height: 7em;
+    width: 100%;
+    resize: none;
+    overflow-y: auto;
+    padding: 0.6em 1em;
+    border: none;
+    border-radius: 16px;
+}
+
+.button {
+    margin-top: 1.8em;
+    width: 100%;
+    border: none;
+}
+
+form:has(:invalid) button {
+    opacity: 0.5;
+    pointer-events: none; 
+    cursor: not-allowed !important;
+}
+
+form:has(:valid) button{
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+}
+
+</style>

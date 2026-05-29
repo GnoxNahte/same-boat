@@ -8,10 +8,10 @@ import Layout from "../../layouts/Layout.astro";
 
     <h3>What would you like to do with this match?</h3>
     <form>
-        <input type="radio" id="stay" name="choice" value="stay" required>
+        <input type="radio" id="stay" name="choice" value="stay-anonymous" required />
         <label for="stay" class="container">Stay anonymous & end chat</label>
         
-        <input type="radio" id="reveal" name="choice" value="reveal" required>
+        <input type="radio" id="reveal" name="choice" value="reveal" required />
         <label for="reveal" class="container">Reveal identity</label>
 
         <button type="submit" class="button container">Confirm</button>
@@ -24,17 +24,20 @@ import Layout from "../../layouts/Layout.astro";
     if (form) {
         form.addEventListener('submit', (ev) => {
             ev.preventDefault();// Prevent refresh
-            console.log("submitted")
+            if (!ev || !ev.currentTarget)
+                return;
+            const data = new FormData(ev.currentTarget as HTMLFormElement);
+            
+            console.log("submitted", ev, data);
             // If fail
             if (!form.checkValidity()) {
-                form.reportValidity(); 
-                console.log("Fail");
+                return;
             } 
-            // If success
-            else {
-                console.log("success");
+
+            if (data.get("choice") === "stay-anonymous")
+                window.location.assign('/match');
+            else
                 window.location.assign('/chat/Liam');
-            }
         });
     }
 </script>
@@ -64,17 +67,31 @@ label {
 }
 
 input:checked + label {
-    background-color: var(--primary);
-    color: var(--primary-foreground);
+    
+    --color: var(--primary);
+
+    outline: 1px solid var(--color);
+    color: var(--color);
+    background-color: color-mix(in oklch, var(--color) 15%, transparent);
+
+    transition-property: color, background-color;
+    transition-duration: 0.22s;
+    transition-timing-function: ease-out;
 }
 
 .button {
     width: 100%;
+    border: none;
 }
 
 form:has(:invalid) button {
     opacity: 0.5;
     pointer-events: none; 
     cursor: not-allowed !important;
+}
+
+form:has(:valid) button{
+    background-color: var(--primary);
+    color: var(--primary-foreground);
 }
 </style>
