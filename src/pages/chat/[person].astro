@@ -1,13 +1,13 @@
 ---
-import { Send } from "@lucide/astro";
+import { ArrowLeft, Send, TriangleAlert } from "@lucide/astro";
 import friends from "../../assets/data/friends.json"
 import Message from "../../components/Message.astro";
 import ProfileCard from "../../components/ProfileCard.astro";
 import Layout from "../../layouts/Layout.astro";
 
 export const anonymousData = {
-  name: "Anonymous",
-  course: "-",
+  name: "Same Boat Buddy",
+  course: "Anonymous",
   year: 0,
   "last-message": "-",
   isAnonymous: true
@@ -32,15 +32,32 @@ const { person } = Astro.params;
 const { personData } = Astro.props;
 
 const messages = [
-    { message: "Hey 👋 same boat here. Assignments are kicking me too.", clientSent: true },
-    { message: "Hang in there. Deadlines always feel worse the night before.", clientSent: false },
-    { message: "Yeah, totally feel that. Want to study quietly for 25 mins?", clientSent: true },
-]
+    { message: "Hey 👋 thanks for matching. Tough week?", clientSent: false },
+    { message: "Had many assignments piled up, have been procrastinating", clientSent: true },
+    { message: "Same here honestly", clientSent: false },
+];
 ---
 
 <Layout>
-    <h2>Chat</h2>
-    <ProfileCard name={personData.name} course={personData.course} year={personData.year} />
+    <!-- <h2>Chat</h2>
+    <ProfileCard name={personData.name} course={personData.course} year={personData.year} /> -->
+
+    <div class="same-line chat-header">
+        <a href="/match" class="back-btn">
+            <ArrowLeft />
+            <span>Chats</span>
+        </a>
+
+        <div class="person-info">
+            <h3 class="person-name">{personData.name}</h3>
+            <p class="person-course">{personData.course}</p>
+        </div>
+    </div>
+
+    <div class="container kind-warning same-line">
+        <TriangleAlert />
+        Be kind. This is a peer support space, not professional counselling.
+    </div>
 
     <div class="message-container">
     {
@@ -57,6 +74,48 @@ const messages = [
 </Layout>
 
 <style>
+
+.chat-header {
+    align-items: center;
+    height: 3.6em;
+    box-shadow: 0px 4px 4px -4px rgba(0,0,0,0.4);
+    transform: translateX(calc(var(--page-padding) * -1 - 4px));
+    width: calc(var(--page-max-width) + 4px);
+
+    --offset: -0.4em;
+}
+
+.back-btn {
+    color: var(--muted-foreground);
+    display: flex;
+    position: absolute;
+    left: 1em;
+    transform: translateY(var(--offset));
+    text-decoration: none;
+}
+
+.person-info {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, var(--offset));
+    text-align: center;
+
+    .person-course {
+        color: var(--muted-foreground);
+        font-size: smaller;
+    }
+}
+
+.kind-warning {
+    margin-top: 1em;
+    color: var(--warning-foreground);
+    background-color: var(--warning);
+    padding: 1em;
+    font-size: smaller;
+    align-items: center;
+    gap: 0.4em;
+}
+
 .message-container {
     display: flex;
     flex-direction: column;
@@ -67,8 +126,10 @@ const messages = [
 .comment-input-box {
     --size: 3.2em;
 
+    position: fixed;
+    bottom: 6.4em;
     gap: 1em;
-    margin-top: auto;
+    width: var(--page-content-width);
 
     input {
         display: inline-block;
