@@ -3,7 +3,7 @@ const { message, clientSent } = Astro.props;
 
 ---
 
-<div class={"message pill container " + (clientSent ? "client-sent" : "buddy-sent")}>
+<div class={"message pill container fade fade-slow " + (clientSent ? "client-sent" : "buddy-sent")}>
     {message}
 </div>
 

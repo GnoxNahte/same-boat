@@ -1,5 +1,6 @@
 ---
 const { name, course, year } = Astro.props;
+const username = Astro.cookies.get("username");
 ---
 
 <div class="profile card">
