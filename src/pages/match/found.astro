@@ -1,0 +1,65 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const allStatus = [
+    { type: "Mood", value: "Stressed" },
+    { type: "Main concern", value: "Assignments" },
+    { type: "Support type", value: "Talk Buddy" },
+    { type: "Zone", value: "Library Zone" },
+]
+---
+
+<Layout>
+    <div class="container">
+        <p class="subtitle">POTENTIAL SAME BOAT BUDDY</p>
+        <h3>Anonymous match found</h3>
+        <div class="status-container">
+        {
+            allStatus.map(status => (
+                <div class="status">
+                    <span>{status.type}</span>
+                    <span>{status.value}</span>
+                </div>
+            ))
+        }
+        </div>
+        <div class="same-line button-container">
+            <a class="button" href="/match">Not now</a>
+            <a class="button confirm" href="/chat/Anonymous">Send Match Request</a>
+        </div>
+    </div>
+</Layout>
+
+<style>
+.subtitle {
+    color: var(--primary);
+    font-size: small;
+}
+
+h3 {
+    margin-top: 0;
+}
+
+.status {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+    margin-bottom: 1em;
+}
+
+.button-container {
+    display: flex;
+    gap: 1em;
+
+    a {
+        width: 50%;
+    }
+
+    a.confirm {
+        background-color: var(--primary);
+        color: var(--primary-foreground);
+    }
+}
+
+
+</style>
