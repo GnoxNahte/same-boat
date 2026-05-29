@@ -68,7 +68,7 @@ const { isSignUp } = Astro.props;
             // If success
             else {
                 console.log("success");
-                navigate('/pulse');
+                window.location.assign('/pulse');
             }
         });
     }

@@ -96,8 +96,6 @@ const supportTypes = [
 </Layout>
 
 <script>
-    import { navigate } from "astro:transitions/client";
-    
     const form = document.querySelector('form');
 
     if (form) {
@@ -112,7 +110,7 @@ const supportTypes = [
             // If success
             else {
                 console.log("success");
-                navigate('/streak');
+                window.location.assign('/streak');
             }
         });
     }

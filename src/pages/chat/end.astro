@@ -19,8 +19,6 @@ import Layout from "../../layouts/Layout.astro";
 </Layout>
 
 <script>
-    import { navigate } from "astro:transitions/client";
-
     const form = document.querySelector('form');
 
     if (form) {
@@ -38,10 +36,10 @@ import Layout from "../../layouts/Layout.astro";
 
             if (data.get("choice") === "stay-anonymous"){
                 console.log("matched");
-                navigate('/match');
+                window.location.assign('/match');
             }
             else
-                navigate('/chat/Liam');
+                window.location.assign('/chat/Liam');
         });
     }
 </script>

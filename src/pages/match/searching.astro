@@ -11,10 +11,8 @@ import Layout from "../../layouts/Layout.astro";
 </Layout>
 
 <script>
-    import { navigate } from "astro:transitions/client";
-    
     setTimeout(() => {
-        navigate('/match/found');
+        window.location.assign('/match/found');
     }, 3000);
 </script>
 
