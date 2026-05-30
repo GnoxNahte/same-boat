@@ -12,5 +12,8 @@ export default defineConfig({
   redirects: {
     "/" : "/sign-up",
     "/chat/Anonymous" : "/chat/Same Boat Buddy"
+  },
+  image: {
+    responsiveStyles: true
   }
 });
