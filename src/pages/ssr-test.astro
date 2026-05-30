@@ -1,0 +1,36 @@
+---
+import ServerComp from "../components/ServerComp.astro";
+import ServerCompSlow from "../components/ServerCompSlow.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+    <ServerComp server:defer>
+        <h1 slot="fallback">Client rendered</h1>
+    </ServerComp>
+    <ServerCompSlow server:defer>
+        <h1 slot="fallback">Client slow rendered</h1>
+    </ServerCompSlow>
+
+    <!-- <h2>Cookies</h2>
+    <div>
+        <button id="set">Set</button>
+        <button id="get">Get</button>
+        <button id="delete">Delete</button>
+    </div> -->
+</Layout>
+
+<script>
+
+    // document.getElementById("get")?.addEventListener("click", ev => {
+    //     console.log("test: ", Astro.cookies.get("test"));
+    // })
+    
+    // document.getElementById("get")?.addEventListener("click", ev => {
+    //     Astro.cookies.set("test", "cookies-set")
+    // })
+    
+    // document.getElementById("get")?.addEventListener("click", ev => {
+    //     Astro.cookies.delete("test")
+    // })
+</script>

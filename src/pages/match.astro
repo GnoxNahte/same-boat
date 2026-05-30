@@ -2,6 +2,8 @@
 import AnonymousMatch from "../components/AnonymousMatch.astro";
 import Friends from "../components/Friends.astro";
 import PastAnonymousMatch from "../components/PastAnonymousMatch.astro";
+import ServerComp from "../components/ServerComp.astro";
+import ServerCompSlow from "../components/ServerCompSlow.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
@@ -16,6 +18,12 @@ import Layout from "../layouts/Layout.astro";
     <h2>Active anonymous matches</h2>
     <AnonymousMatch status="Stressed · Assignments · Library Zone"/>
     
+    <ServerComp server:defer>
+        <h1 slot="fallback">Client rendered</h1>
+    </ServerComp>
+    <ServerCompSlow server:defer>
+        <h1 slot="fallback">Client slow rendered</h1>
+    </ServerCompSlow>
     <Friends />
 
     <h3>Past anonymous chats</h3>
