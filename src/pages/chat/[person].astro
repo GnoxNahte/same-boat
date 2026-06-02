@@ -56,11 +56,15 @@ const messages = [
             <p class="person-course">{personData.course}</p>
         </div>
         
-        <MessageSquareWarning class="report-btn"/>
-        {
-            personData.isAnonymous && 
-            <a href="/chat/end" class="button end-chat">End chat</a>
-        }
+        <div class="right-header-section">
+            <div class="report-btn">
+                <MessageSquareWarning color="#FF0000"/>
+            </div>
+            {
+                personData.isAnonymous && 
+                <a href="/chat/end" class="button end-chat">End chat</a>
+            }
+        </div>
     </div>
 
     <div class="container kind-warning same-line">
@@ -116,18 +120,23 @@ inputBtn?.addEventListener("click", ev => {
     text-decoration: none;
 }
 
-.end-chat {
+.right-header-section {
     position: absolute;
+    display: flex;
+    align-items: center;
     right: 1em;
     transform: translateY(var(--content-offset));
-}
 
-.report-btn {
-    position: absolute;
-    right: 6.4em;
-    transform: translateY(calc(var(--content-offset) + 4px));
-    color: red;
-    cursor: pointer;
+    .report-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 0.4em;
+        padding: 0;
+        width: 32px;
+        height: 32px;
+        cursor: pointer;
+    }
 }
 
 .person-info {
