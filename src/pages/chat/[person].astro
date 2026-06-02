@@ -32,9 +32,10 @@ const { person } = Astro.params;
 const { personData } = Astro.props;
 
 const messages = [
-    { message: "Hey 👋 thanks for matching. Tough week?", clientSent: false },
+    { message: "Hi! thanks for matching. Tough week?", clientSent: false },
     { message: "Had many assignments piled up, have been procrastinating", clientSent: true },
     { message: "Same here honestly", clientSent: false },
+    { message: "Things will get better bro!", clientSent: true },
 ];
 ---
 
@@ -78,6 +79,18 @@ const messages = [
     </div>
 </Layout>
 
+<script>
+const inputBtn = document.querySelector(".comment-input-box button");
+const messages = document.querySelectorAll(".message");
+
+let index = 0;
+
+inputBtn?.addEventListener("click", ev => {
+    messages[index].classList.add("show-message");
+    ++index;
+})
+</script>
+
 <style>
 
 .chat-header {
@@ -89,7 +102,6 @@ const messages = [
     box-shadow: 0px 4px 4px -4px rgba(0,0,0,0.4);
     transform: translateX(calc(var(--page-padding) * -1 - var(--size-offset)));
     width: calc(var(--page-max-width) + var(--size-offset));
-
 }
 
 .back-btn {

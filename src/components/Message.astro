@@ -3,16 +3,18 @@ const { message, clientSent } = Astro.props;
 
 ---
 
-<div class={"message container fade fade-slow " + (clientSent ? "client-sent" : "buddy-sent")}>
+<div class={"message container " + (clientSent ? "client-sent" : "buddy-sent")}>
     {message}
 </div>
 
 <style>
 .message {
     max-width: 80%;
+    width: fit-content;
     padding: 0.5em 1.2em;
     font-size: 0.9em;
     border-radius: 2em;
+    display: none;
 }
 
 .client-sent {
@@ -24,5 +26,19 @@ const { message, clientSent } = Astro.props;
     margin-left: auto;
     color: var(--foreground);
     background-color: var(--background);
+}
+
+.show-message {
+    display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.message {
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out forwards;
 }
 </style>
