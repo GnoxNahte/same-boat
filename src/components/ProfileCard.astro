@@ -1,6 +1,9 @@
 ---
+import { Flame } from "@lucide/astro";
+
 const { name, course, year, lastMsg, isViewing } = Astro.props;
 const inital = name[0];
+const streakCount = Math.floor(Math.random() % 299 + 1);
 ---
 
 <div class="profile card">
@@ -12,7 +15,13 @@ const inital = name[0];
         <p class="sub-info">{ `${course} · Year ${ year }`}</p>
         { isViewing && <p class="last-msg">"{  lastMsg }"</p> }
     </div>
-    { isViewing && <a href={"/chat/" + name} class="button">Chat</a> }
+    <div class="chat-container">
+        <div class="streak-container">
+            <Flame />
+            {streakCount}
+        </div>
+        { isViewing && <a href={"/chat/" + name} class="button">Chat</a> }
+    </div>
 </div>
 
 <style>
@@ -35,7 +44,19 @@ const inital = name[0];
     background-color: #d0fae5;
 }
 
-a.button {
+.chat-container {
     margin: auto 0 auto auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .streak-container {
+        display: flex;
+    }
+
+    .lucide {
+        color: #ff5400;
+    }
 }
+
 </style>
