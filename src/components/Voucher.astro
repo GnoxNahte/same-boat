@@ -6,24 +6,84 @@ const { img, offer, minSpend, expiry, points } = Astro.props;
 ---
 
 <div class="container voucher">
+    <div class="top-punch"></div>
+    <div class="bot-punch"></div>
+    <div class="split-line"></div>
     <Image src={img} alt={"Voucher brand image"}/>
     <div class="voucher-details">
-        <p>{offer}</p>
-        <p>{minSpend} min. spend</p>
-        <p>Expires in {expiry} day{expiry > 1 ? "s" : ""}</p>
+        <p class="offer">{offer}</p>
+        <p class="min-spend">${minSpend} min. spend</p>
+        <p class="expiry">Expires in {expiry} day{expiry > 1 ? "s" : ""}</p>
     </div>
     <div class="points button">
-        <span>Claim</span>
-        <span>{points}pts</span>
+        {points}pts
     </div>
 </div>
 
 <style>
 .voucher {
+    position: relative;
     display: flex;
     flex-direction: row;
+    align-items: center;
     margin-bottom: 0.8em;
-    
+
+    --img-size: 25%;
+    --punch-size: 1em;
+    --punch-pos: calc(var(--img-size) + var(--punch-size) * 0.5);
+}
+
+.top-punch, .bot-punch {
+    position: absolute;
+    width: var(--punch-size);
+    height: var(--punch-size);
+    left: var(--punch-pos);
+
+    border-radius: 50%;
+    background-color: oklab(0.985 -0.00173648 -0.00984808 / 1);
+}
+
+.top-punch {
+    top: calc(-0.625 * var(--punch-size));
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 1px;
+}
+
+.bot-punch {
+    bottom: calc(-0.625 * var(--punch-size));
+    box-shadow: rgba(0, 0, 0, 0.09) 0px -1px;
+}
+
+.split-line {
+    --offset: calc(1.2 * var(--punch-size));
+    position: absolute;
+    top: var(--offset);
+    bottom: var(--offset);
+    left: calc(var(--punch-pos) + var(--punch-size) * 0.5);
+
+    border-right: 2px dotted var(--muted-foreground);
+}
+
+img {
+    width: var(--img-size);
+}
+
+.voucher-details{
+    margin-left: calc(var(--punch-size) * 2);
+    flex-grow: 1;
+
+    .offer {
+        font-weight: 600;
+    }
+
+    .min-spend {
+        color: var(--muted-foreground);
+        font-size: small;
+    }
+
+    .expiry {
+        color: var(--destructive);
+        font-size: small;
+    }
 }
 
 .points {
