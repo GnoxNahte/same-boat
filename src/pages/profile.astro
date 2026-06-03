@@ -4,6 +4,10 @@ import SelfProfileCard from "../components/SelfProfileCard.astro";
 import { Lock, Users, Eye, Bell, Heart } from "@lucide/astro";
 import Toggle from "../components/Toggle.astro";
 import Friends from "../components/Friends.astro";
+import { map } from "astro:schema";
+import Voucher from "../components/Voucher.astro";
+
+import FairPriceLogo from "../assets/brands/FairPrice.svg"
 
 const profileData = [
   { text: "Display Name", placeholder: "Leon" },
@@ -33,6 +37,11 @@ const privacySettings = [
     ],
   },
 ];
+
+const vouchers = [
+  { img: FairPriceLogo, offer: "$1 Off @ Cates", minSpend: 5, expiry: 10, points: 100 },
+  { img: FairPriceLogo, offer: "$5 Off @ FairPrice", minSpend: 50, expiry: 10, points: 500 },
+]
 
 ---
 
@@ -87,6 +96,18 @@ const privacySettings = [
   </div>
 
   <!-- <Friends /> -->
+
+  <h2>Vouchers</h2>
+  {
+    vouchers.map(voucher => 
+    <Voucher 
+      img={voucher.img}
+      offer={voucher.offer}
+      minSpend={voucher.minSpend}
+      expiry={voucher.expiry}
+      points={voucher.points}
+      />)
+  }
 
   <a class="button warning sign-out-btn" href="/">Sign out</a>
 </Layout>

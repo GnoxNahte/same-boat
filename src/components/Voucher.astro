@@ -1,0 +1,36 @@
+---
+import { Image } from "astro:assets";
+
+const { img, offer, minSpend, expiry, points } = Astro.props; 
+
+---
+
+<div class="container voucher">
+    <Image src={img} alt={"Voucher brand image"}/>
+    <div class="voucher-details">
+        <p>{offer}</p>
+        <p>{minSpend} min. spend</p>
+        <p>Expires in {expiry} day{expiry > 1 ? "s" : ""}</p>
+    </div>
+    <div class="points button">
+        <span>Claim</span>
+        <span>{points}pts</span>
+    </div>
+</div>
+
+<style>
+.voucher {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0.8em;
+    
+}
+
+.points {
+    display: flex;
+    flex-direction: column;
+
+    width: fit-content;
+    height: fit-content;
+}
+</style>
