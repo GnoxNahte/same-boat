@@ -16,10 +16,6 @@ const streakCount = Math.floor(Math.random() * 20 + 1);
         { isViewing && <p class="last-msg">"{  lastMsg }"</p> }
     </div>
     <div class="chat-container">
-        <div class="streak-container">
-            <Flame />
-            <span>{streakCount}</span>
-        </div>
         { isViewing && <a href={"/chat/" + name} class="button">Chat</a> }
     </div>
 </div>
