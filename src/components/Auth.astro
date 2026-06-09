@@ -42,7 +42,7 @@ const { isSignUp } = Astro.props;
                         minlength="8"
                         placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" />
             </div>
-            <input type="submit" value={isSignUp ? "Sign Up" : "Sign In"} />
+            <input class="submit-btn" type="submit" value={isSignUp ? "Sign Up" : "Sign In"} />
         </form>
 
         <p class="switch-auth">{isSignUp ? "New here?" : "Already have an account?"} <a href={"./" + (isSignUp ? "sign-in" : "sign-up")}>{isSignUp ? "Sign In" : "Sign Up"}</a></p>
@@ -54,22 +54,23 @@ const { isSignUp } = Astro.props;
 </CleanLayout>
 
 <script>
-    const form = document.querySelector('form');
+    const btn = document.querySelector('.submit-btn');
 
-    if (form) {
-        form.addEventListener('submit', (ev) => {
+    if (btn) {
+        btn.addEventListener('click', (ev) => {
             ev.preventDefault();// Prevent refresh
+            
+            window.location.assign('/pulse');
             console.log("submitted")
             // If fail
-            if (!form.checkValidity()) {
-                form.reportValidity(); 
-                console.log("Fail");
-            } 
-            // If success
-            else {
-                console.log("success");
-                window.location.assign('/pulse');
-            }
+            // if (!form.checkValidity()) {
+            //     form.reportValidity(); 
+            //     console.log("Fail");
+            // } 
+            // // If success
+            // else {
+            //     console.log("success");
+            // }
         });
     }
 </script>
